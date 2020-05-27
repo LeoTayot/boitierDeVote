@@ -15,20 +15,7 @@ public class IOCommandesStudent extends Thread {
 	private Socket maChaussette;
 
 	private boolean placeLibre;
-
-	public Socket getMaChaussette() {
-		return maChaussette;
-	}
-
-	public void setPlaceLibre(boolean placeLibre) {
-		this.placeLibre = placeLibre;
-	}
-
-	@Override
-	public void run() {
-		discussion();
-	}
-
+	
 	public IOCommandesStudent(Socket uneChaussette, boolean placeLibre) {
 		// Partie en local
 		InputStreamReader monInputStream = new InputStreamReader(System.in);
@@ -56,8 +43,12 @@ public class IOCommandesStudent extends Thread {
 		this.placeLibre = placeLibre;
 	}
 
-	public void ecrireEcran(String texte) {
-		ecritureEcran.println(texte);
+	public Socket getMaChaussette() {
+		return maChaussette;
+	}
+
+	public void setPlaceLibre(boolean placeLibre) {
+		this.placeLibre = placeLibre;
 	}
 
 	public String lireEcran() {
@@ -70,6 +61,25 @@ public class IOCommandesStudent extends Thread {
 		}
 
 		return texte;
+	}
+	
+	public String lireReseau() {
+		if (maChaussette != null) {
+			String texte = "";
+			try {
+				texte = lectureReseau.readLine();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			return texte;
+		}
+		return null;
+	}
+	
+	public void ecrireEcran(String texte) {
+		ecritureEcran.println(texte);
 	}
 
 	public void ecrireReseauUnicast(String texte) {
@@ -112,23 +122,8 @@ public class IOCommandesStudent extends Thread {
 		}
 	}
 
-	public String lireReseau() {
-		if (maChaussette != null) {
-			String texte = "";
-			try {
-				texte = lectureReseau.readLine();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			return texte;
-		}
-		return null;
-
-	}
-
-	public void discussion() {
+	@Override
+	public void run() {
 		try {
 			String message = "";
 			ecrireEcran("Connexion de l'Etudiant : " + maChaussette.getInetAddress());

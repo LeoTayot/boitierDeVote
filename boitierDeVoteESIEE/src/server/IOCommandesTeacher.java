@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
 
-public class IOCommandesServeur extends Thread {
+public class IOCommandesTeacher extends Thread {
 
 	private BufferedReader lectureEcran;
 	private BufferedReader lectureReseau;
@@ -16,20 +16,7 @@ public class IOCommandesServeur extends Thread {
 
 	private boolean placeLibre;
 
-	public Socket getMaChaussette() {
-		return maChaussette;
-	}
-
-	public void setPlaceLibre(boolean placeLibre) {
-		this.placeLibre = placeLibre;
-	}
-
-	@Override
-	public void run() {
-		discussion();
-	}
-
-	public IOCommandesServeur(Socket uneChaussette, boolean placeLibre) {
+	public IOCommandesTeacher(Socket uneChaussette, boolean placeLibre) {
 		// Partie en local
 		InputStreamReader monInputStream = new InputStreamReader(System.in);
 		lectureEcran = new BufferedReader(monInputStream);
@@ -56,8 +43,12 @@ public class IOCommandesServeur extends Thread {
 		this.placeLibre = placeLibre;
 	}
 
-	public void ecrireEcran(String texte) {
-		ecritureEcran.println(texte);
+	public Socket getMaChaussette() {
+		return maChaussette;
+	}
+
+	public void setPlaceLibre(boolean placeLibre) {
+		this.placeLibre = placeLibre;
 	}
 
 	public String lireEcran() {
@@ -70,6 +61,25 @@ public class IOCommandesServeur extends Thread {
 		}
 
 		return texte;
+	}
+
+	public String lireReseau() {
+		if (maChaussette != null) {
+			String texte = "";
+			try {
+				texte = lectureReseau.readLine();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			return texte;
+		}
+		return null;
+	}
+
+	public void ecrireEcran(String texte) {
+		ecritureEcran.println(texte);
 	}
 
 	public void ecrireReseauUnicast(String texte) {
@@ -112,26 +122,11 @@ public class IOCommandesServeur extends Thread {
 		}
 	}
 
-	public String lireReseau() {
-		if (maChaussette != null) {
-			String texte = "";
-			try {
-				texte = lectureReseau.readLine();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			return texte;
-		}
-		return null;
-
-	}
-
-	public void discussion() {
+	@Override
+	public void run() {
 		try {
 			String message = "";
-			ecrireEcran("Connexion de : " + maChaussette.getInetAddress());
+			ecrireEcran("Connexion du Professeur : " + maChaussette.getInetAddress());
 			ecrireReseauBroadcastUsers();
 			if (placeLibre) {
 				while (!message.equals("quit")) {

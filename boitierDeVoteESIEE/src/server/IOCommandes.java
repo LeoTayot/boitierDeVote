@@ -16,10 +16,6 @@ public class IOCommandes extends Thread {
 
 	private boolean placeLibre;
 
-	public Socket getMaChaussette() {
-		return maChaussette;
-	}
-
 	public IOCommandes(Socket uneChaussette, boolean placeLibre) {
 		// Partie en local
 		InputStreamReader monInputStream = new InputStreamReader(System.in);
@@ -47,6 +43,21 @@ public class IOCommandes extends Thread {
 		this.placeLibre = placeLibre;
 	}
 
+	public String lireReseau() {
+		if (maChaussette != null) {
+			String texte = "";
+			try {
+				texte = lectureReseau.readLine();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			return texte;
+		}
+		return null;
+	}
+
 	public void ecrireEcran(String texte) {
 		ecritureEcran.println(texte);
 	}
@@ -70,20 +81,5 @@ public class IOCommandes extends Thread {
 			}
 
 		}
-	}
-
-	public String lireReseau() {
-		if (maChaussette != null) {
-			String texte = "";
-			try {
-				texte = lectureReseau.readLine();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			return texte;
-		}
-		return null;
 	}
 }
