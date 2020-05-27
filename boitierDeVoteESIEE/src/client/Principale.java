@@ -11,7 +11,7 @@ public class Principale {
 	public static void main(String args[]) {
 		Socket chaussette = null;
 		try {
-			chaussette = new Socket("127.0.0.1", 4513);
+			chaussette = new Socket("127.0.0.1", 4502);
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

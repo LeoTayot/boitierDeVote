@@ -31,6 +31,7 @@ public class PrincipaleServeur {
 			System.out.println("Lancement du serveur");
 
 			while (true) {
+				System.out.println("UserList :" + userList);
 				Socket socketClient = socketServeur.accept();
 				int available = checkPlaceLibre(maxUsers, mesThreads);
 				System.out.println("Available : " + available);
