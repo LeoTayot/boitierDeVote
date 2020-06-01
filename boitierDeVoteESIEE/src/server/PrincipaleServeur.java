@@ -52,12 +52,14 @@ public class PrincipaleServeur {
 					System.out.println("TEACHER !");
 					IOCommandesTeacher teacher = new IOCommandesTeacher(socketClient, isPlaceFree);
 					mesThreads[available] = (teacher);
+					t.ecrireReseauUnicast("TEACHER");
 					teacher.start();
 				}
 				else {
 					System.out.println("STUDENT !");
 					IOCommandesStudent student = new IOCommandesStudent(socketClient, isPlaceFree);
 					mesThreads[available] = (student);
+					t.ecrireReseauUnicast("STUDENT");
 					student.start();
 				}
 				userList.put(socketClient, username);

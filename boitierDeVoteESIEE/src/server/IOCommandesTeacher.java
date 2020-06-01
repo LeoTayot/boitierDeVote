@@ -127,7 +127,7 @@ public class IOCommandesTeacher extends Thread {
 		try {
 			String message = "";
 			ecrireEcran("Connexion du Professeur : " + maChaussette.getInetAddress());
-			ecrireReseauBroadcastUsers();
+			//ecrireReseauBroadcastUsers();
 			if (placeLibre) {
 				while (!message.equals("quit")) {
 					message = lireReseau();

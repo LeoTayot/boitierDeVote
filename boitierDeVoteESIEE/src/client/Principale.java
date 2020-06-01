@@ -30,16 +30,46 @@ public class Principale {
 			monIOCommandes = new IOCommandes(chaussette);
 		}
 		
+		String repServ = "";
+		
+		// Set pseudo
+		String username = "";
+		username = monIOCommandes.lireEcran();
+		monIOCommandes.ecrireReseau(username);
+		System.out.println("Username :" + username);
+		repServ = monIOCommandes.lireReseau();
+		System.out.println("Rep Serv :" + repServ);
+		
+		// Set userType
+		String userType = "";
+		userType = monIOCommandes.lireEcran();
+		monIOCommandes.ecrireReseau(userType);
+		System.out.println("User Type :" + userType);
+		repServ = monIOCommandes.lireReseau();
+		System.out.println("Rep Serv :" + repServ);
+		switch(repServ) {
+			case "STUDENT" :
+				userType = "STUDENT";
+				System.out.println("STUDENT CONNECTED");
+				IOCommandesStudent student = new IOCommandesStudent(chaussette);
+				student.start();
+				break;
+			case "TEACHER" :
+				userType = "TEACHER";
+				System.out.println("TEACHER CONNECTED");
+				break;
+			default :
+				// Error
+				break;
+		}
 		
 		String texteEntre = "";
-		
 		while(!texteEntre.equals("quit")) {
 			texteEntre = monIOCommandes.lireEcran();
 			monIOCommandes.ecrireReseau(texteEntre);
-			System.out.println("texte entré :" + texteEntre);
-			String repServ = monIOCommandes.lireReseau();
+			System.out.println("Texte entré :" + texteEntre);
+			repServ = monIOCommandes.lireReseau();
 			System.out.println("Rep Serv :" + repServ);
-			monIOCommandes.ecrireEcran(repServ);
 		}
 
 		try {
