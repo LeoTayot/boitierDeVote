@@ -10,6 +10,8 @@ public class Principale {
 
 	public static void main(String args[]) {
 		Socket chaussette = null;
+		IOCommandesTeacher teacher = null;
+		IOCommandesStudent student = null;
 		try {
 			chaussette = new Socket("127.0.0.1", 4502);
 		} catch (UnknownHostException e) {
@@ -36,7 +38,6 @@ public class Principale {
 		String username = "";
 		username = monIOCommandes.lireEcran();
 		monIOCommandes.ecrireReseau(username);
-		System.out.println("Username :" + username);
 		repServ = monIOCommandes.lireReseau();
 		System.out.println("Rep Serv :" + repServ);
 		
@@ -46,17 +47,18 @@ public class Principale {
 		monIOCommandes.ecrireReseau(userType);
 		System.out.println("User Type :" + userType);
 		repServ = monIOCommandes.lireReseau();
-		System.out.println("Rep Serv :" + repServ);
 		switch(repServ) {
 			case "STUDENT" :
 				userType = "STUDENT";
 				System.out.println("STUDENT CONNECTED");
-				IOCommandesStudent student = new IOCommandesStudent(chaussette);
+				student = new IOCommandesStudent(chaussette);
 				student.start();
 				break;
 			case "TEACHER" :
 				userType = "TEACHER";
 				System.out.println("TEACHER CONNECTED");
+				teacher = new IOCommandesTeacher(chaussette);
+				teacher.start();
 				break;
 			default :
 				// Error
@@ -68,11 +70,17 @@ public class Principale {
 			texteEntre = monIOCommandes.lireEcran();
 			monIOCommandes.ecrireReseau(texteEntre);
 			System.out.println("Texte entré :" + texteEntre);
-			repServ = monIOCommandes.lireReseau();
-			System.out.println("Rep Serv :" + repServ);
+			//repServ = monIOCommandes.lireReseau();
+			//System.out.println("Rep Serv :" + repServ);
 		}
 
 		try {
+			if(userType.equals("TEACHER")) {
+				teacher.interrupt();
+			}
+			else {
+				student.interrupt();
+			}
 			monIOCommandes.getMaChaussette().close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
 
-public class IOCommandesStudent extends Thread {
+public class IOCommandesTeacher extends Thread {
 
 	private BufferedReader lectureEcran;
 	private BufferedReader lectureReseau;
@@ -32,19 +32,16 @@ public class IOCommandesStudent extends Thread {
 		}
 	}
 
-	public IOCommandesStudent() {
-
+	public IOCommandesTeacher() {
 		// Partie en local
 		InputStreamReader monInputStream = new InputStreamReader(System.in);
 		lectureEcran = new BufferedReader(monInputStream);
 		ecritureEcran = new PrintStream(System.out);
 		ecritureUser = new PrintStream(System.out);
 		maChaussette = null;
-
 	}
 
-	public IOCommandesStudent(Socket uneChaussette) {
-
+	public IOCommandesTeacher(Socket uneChaussette) {
 		// Partie en local
 		InputStreamReader monInputStream = new InputStreamReader(System.in);
 		lectureEcran = new BufferedReader(monInputStream);
@@ -69,7 +66,6 @@ public class IOCommandesStudent extends Thread {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 
 	public PrintStream getEcritureUser() {
