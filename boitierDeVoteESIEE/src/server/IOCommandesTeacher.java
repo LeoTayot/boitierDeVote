@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
 
-public class IOCommandesServeur extends Thread {
+public class IOCommandesTeacher extends Thread {
 
 	private BufferedReader lectureEcran;
 	private BufferedReader lectureReseau;
@@ -16,20 +16,7 @@ public class IOCommandesServeur extends Thread {
 
 	private boolean placeLibre;
 
-	public Socket getMaChaussette() {
-		return maChaussette;
-	}
-
-	public void setPlaceLibre(boolean placeLibre) {
-		this.placeLibre = placeLibre;
-	}
-
-	@Override
-	public void run() {
-		discussion();
-	}
-
-	public IOCommandesServeur(Socket uneChaussette, boolean placeLibre) {
+	public IOCommandesTeacher(Socket uneChaussette, boolean placeLibre) {
 		// Partie en local
 		InputStreamReader monInputStream = new InputStreamReader(System.in);
 		lectureEcran = new BufferedReader(monInputStream);
@@ -56,8 +43,13 @@ public class IOCommandesServeur extends Thread {
 		this.placeLibre = placeLibre;
 	}
 
-	public void ecrireEcran(String texte) {
-		ecritureEcran.println(texte);
+	
+	public Socket getMaChaussette() {
+		return maChaussette;
+	}
+
+	public void setPlaceLibre(boolean placeLibre) {
+		this.placeLibre = placeLibre;
 	}
 
 	public String lireEcran() {
@@ -70,6 +62,25 @@ public class IOCommandesServeur extends Thread {
 		}
 
 		return texte;
+	}
+
+	public String lireReseau() {
+		if (maChaussette != null) {
+			String texte = "";
+			try {
+				texte = lectureReseau.readLine();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			return texte;
+		}
+		return null;
+	}
+
+	public void ecrireEcran(String texte) {
+		ecritureEcran.println(texte);
 	}
 
 	public void ecrireReseauUnicast(String texte) {
@@ -92,6 +103,31 @@ public class IOCommandesServeur extends Thread {
 
 		}
 	}
+	
+	public boolean ecrireToStudent(String userName, String message) {
+		boolean retcode = false;
+		for (int i = 0; i < PrincipaleServeur.maxUsers; i++) {
+			PrintStream tmp = null;
+			if(PrincipaleServeur.mesThreads[i] == null) {
+				continue;
+			}
+			
+			String tmpUserClass = PrincipaleServeur.mesThreads[i].getClass().getName();
+			try {
+				if (PrincipaleServeur.lesChaussettes[i] != null
+					&& tmpUserClass != null
+					&& tmpUserClass.equals("server.IOCommandesStudent")) {
+					retcode = true;
+					tmp = new PrintStream(PrincipaleServeur.lesChaussettes[i].getOutputStream());
+					tmp.println(userName+ "> " +message);
+				}
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return retcode;
+	}
 
 	public void ecrireReseauBroadcastUsers() {
 		for (int i = 0; i < PrincipaleServeur.maxUsers; i++) {
@@ -112,30 +148,19 @@ public class IOCommandesServeur extends Thread {
 		}
 	}
 
-	public String lireReseau() {
-		if (maChaussette != null) {
-			String texte = "";
-			try {
-				texte = lectureReseau.readLine();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			return texte;
-		}
-		return null;
-
-	}
-
-	public void discussion() {
+	@Override
+	public void run() {
 		try {
 			String message = "";
-			ecrireEcran("Connexion de : " + maChaussette.getInetAddress());
-			ecrireReseauBroadcastUsers();
+			ecrireEcran("Connexion du Professeur : " + maChaussette.getInetAddress());
+			//ecrireReseauBroadcastUsers();
 			if (placeLibre) {
 				while (!message.equals("quit")) {
 					message = lireReseau();
+					if(message.equals("quit")) {
+						ecrireReseauUnicast("EXIT");
+						continue;
+					}
 					ecrireEcran(PrincipaleServeur.userList.get(maChaussette) + ">" + message);
 					if (message.startsWith("@")) {
 						/*ecrireReseauMessagePrive(message,
@@ -145,14 +170,21 @@ public class IOCommandesServeur extends Thread {
 						 */
 					}
 					else {
-						ecrireReseauBroadcast(PrincipaleServeur.userList.get(maChaussette) + " >" + message);
+						ecrireToStudent(PrincipaleServeur.userList.get(maChaussette), message);
+						/*if(true == ecrireToStudent(PrincipaleServeur.userList.get(maChaussette), message)){
+							ecrireReseauUnicast("OK");
+						}
+						else {
+							ecrireReseauUnicast("NOK");
+						}*/
+						//ecrireReseauBroadcast(PrincipaleServeur.userList.get(maChaussette) + " >" + message);
 					}
 				}
 			} else {
 				ecrireReseauUnicast("Plus de place sur le serveur");
 			}
 			PrincipaleServeur.userList.remove(maChaussette);
-			ecrireReseauBroadcastUsers();
+			//ecrireReseauBroadcastUsers();
 			maChaussette.close();
 			ecrireEcran("Déconnexion de : " + maChaussette.getInetAddress());
 		} catch (Exception e) {

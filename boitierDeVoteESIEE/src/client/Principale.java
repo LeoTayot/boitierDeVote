@@ -10,6 +10,8 @@ public class Principale {
 
 	public static void main(String args[]) {
 		Socket chaussette = null;
+		IOCommandesTeacher teacher = null;
+		IOCommandesStudent student = null;
 		try {
 			chaussette = new Socket("127.0.0.1", 4502);
 		} catch (UnknownHostException e) {
@@ -30,19 +32,55 @@ public class Principale {
 			monIOCommandes = new IOCommandes(chaussette);
 		}
 		
+		String repServ = "";
+		
+		// Set pseudo
+		String username = "";
+		username = monIOCommandes.lireEcran();
+		monIOCommandes.ecrireReseau(username);
+		repServ = monIOCommandes.lireReseau();
+		System.out.println("Rep Serv :" + repServ);
+		
+		// Set userType
+		String userType = "";
+		userType = monIOCommandes.lireEcran();
+		monIOCommandes.ecrireReseau(userType);
+		System.out.println("User Type :" + userType);
+		repServ = monIOCommandes.lireReseau();
+		switch(repServ) {
+			case "STUDENT" :
+				userType = "STUDENT";
+				System.out.println("STUDENT CONNECTED");
+				student = new IOCommandesStudent(chaussette);
+				student.start();
+				break;
+			case "TEACHER" :
+				userType = "TEACHER";
+				System.out.println("TEACHER CONNECTED");
+				teacher = new IOCommandesTeacher(chaussette);
+				teacher.start();
+				break;
+			default :
+				// Error
+				break;
+		}
 		
 		String texteEntre = "";
-		
 		while(!texteEntre.equals("quit")) {
 			texteEntre = monIOCommandes.lireEcran();
 			monIOCommandes.ecrireReseau(texteEntre);
-			System.out.println("texte entré :" + texteEntre);
-			String repServ = monIOCommandes.lireReseau();
-			System.out.println("Rep Serv :" + repServ);
-			monIOCommandes.ecrireEcran(repServ);
+			System.out.println("Texte entré :" + texteEntre);
+			//repServ = monIOCommandes.lireReseau();
+			//System.out.println("Rep Serv :" + repServ);
 		}
 
 		try {
+			if(userType.equals("TEACHER")) {
+				teacher.interrupt();
+			}
+			else {
+				student.interrupt();
+			}
 			monIOCommandes.getMaChaussette().close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

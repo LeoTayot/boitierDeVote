@@ -31,24 +31,38 @@ public class PrincipaleServeur {
 			System.out.println("Lancement du serveur");
 
 			while (true) {
-				System.out.println("UserList :" + userList);
 				Socket socketClient = socketServeur.accept();
 				int available = checkPlaceLibre(maxUsers, mesThreads);
-				System.out.println("Available : " + available);
-				IOCommandesServeur t = null;
+				boolean isPlaceFree = false;
+				IOCommandes t = null;
 				if (available != -1) {
-					t = new IOCommandesServeur(socketClient, true);
-					mesThreads[available] = (t);
+					isPlaceFree = true;
+					t = new IOCommandes(socketClient, isPlaceFree);
 					lesChaussettes[available] = (socketClient);
-					System.out.println("IOCommandServer" + t);
 				} else {
-					t = new IOCommandesServeur(socketClient, false);
+					isPlaceFree = false;
+					t = new IOCommandes(socketClient, isPlaceFree);
 				}
 
 				String username = t.lireReseau();
-
+				t.ecrireReseauUnicast("Username OK");
+				String role = t.lireReseau();
+				
+				if(role.equals("T")) {
+					System.out.println("TEACHER !");
+					IOCommandesTeacher teacher = new IOCommandesTeacher(socketClient, isPlaceFree);
+					mesThreads[available] = (teacher);
+					t.ecrireReseauUnicast("TEACHER");
+					teacher.start();
+				}
+				else {
+					System.out.println("STUDENT !");
+					IOCommandesStudent student = new IOCommandesStudent(socketClient, isPlaceFree);
+					mesThreads[available] = (student);
+					t.ecrireReseauUnicast("STUDENT");
+					student.start();
+				}
 				userList.put(socketClient, username);
-				t.start();
 			}
 
 		} catch (Exception e) {
