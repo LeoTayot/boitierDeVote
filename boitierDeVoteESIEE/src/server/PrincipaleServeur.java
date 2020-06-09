@@ -17,6 +17,7 @@ public class PrincipaleServeur {
 	public static Thread[] mesThreads = new Thread[maxUsers];
 	public static Socket[] lesChaussettes = new Socket[maxUsers];
 	public static Map<Socket, String> userList = new HashMap<>();
+	public static JSONArray users = new JSONArray();
 
 	public static int checkPlaceLibre(int max, Thread[] tabThreads) {
 		for (int i = 0; i < max - 1; i++) {
@@ -31,7 +32,7 @@ public class PrincipaleServeur {
 
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
-		
+
 		try {
 			ServerSocket socketServeur = new ServerSocket(port);
 			System.out.println("Lancement du serveur");
@@ -54,6 +55,11 @@ public class PrincipaleServeur {
 				t.ecrireReseauUnicast("Username OK");
 				
 				String role = t.lireReseau();
+				JSONObject user = new JSONObject();
+				user.put("username", username);
+				user.put("role", role);
+				users.add(user);
+				
 				if(role.equals("T")) {
 					System.out.println("TEACHER !");
 					IOCommandesTeacher teacher = new IOCommandesTeacher(socketClient, isPlaceFree);

@@ -37,6 +37,10 @@ public class IOCommandesStudent extends Thread {
 			message = this.lireReseau();
 			ecrireEcran(message);
 			
+			String firstChar = message.substring(0, 1);
+			if(!firstChar.equals("{")) {
+				continue;
+			}
 			// Parse JSON
 			JSONParser parser = new JSONParser();
 			Object jsonObj = null;

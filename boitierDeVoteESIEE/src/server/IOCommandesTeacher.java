@@ -5,6 +5,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
+import java.util.HashMap;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class IOCommandesTeacher extends Thread {
 
@@ -106,6 +111,31 @@ public class IOCommandesTeacher extends Thread {
 	
 	public boolean ecrireToStudent(String userName, String message) {
 		boolean retcode = false;
+		JSONParser parser = new JSONParser();
+		Object jsonObj = null;
+		try {
+			jsonObj = parser.parse(message);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		JSONObject jsonObject = (JSONObject) jsonObj;
+		String questionId = (String) jsonObject.get("questionId");
+
+
+		System.out.println("Before : ");
+		System.out.println(PrincipaleServeur.users.toJSONString());
+		
+		String currentRole = "";
+		for(Object user : PrincipaleServeur.users) {
+			currentRole = (String) ((JSONObject) user).get("role");
+			if(currentRole.equals("T")) {
+				continue;
+			}
+			((JSONObject) user).put("ans_" + questionId, false);
+		}
+		System.out.println("After : ");
+		System.out.println(PrincipaleServeur.users.toJSONString());
+		
 		for (int i = 0; i < PrincipaleServeur.maxUsers; i++) {
 			PrintStream tmp = null;
 			if(PrincipaleServeur.mesThreads[i] == null) {

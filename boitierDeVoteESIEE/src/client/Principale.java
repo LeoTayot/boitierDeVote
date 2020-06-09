@@ -28,7 +28,7 @@ public class Principale {
 		IOCommandes monIOCommandes = null;
 		
 		int available = PrincipaleServeur.checkPlaceLibre(PrincipaleServeur.maxUsers, PrincipaleServeur.mesThreads);
-		System.out.println("Place available :" + available);
+//		System.out.println("Place available :" + available);
 		if (available == -1) {
 			monIOCommandes = new IOCommandes();
 			monIOCommandes.ecrireEcran("Il n'y a plus de place sur le serveur, veuillez réessayer ultérieurement.");
