@@ -45,20 +45,6 @@ public class Principale {
 		repServ = monIOCommandes.lireReseau();
 		System.out.println("Rep Serv :" + repServ);
 		
-		JSONObject  jp = new JSONObject ();
-		jp.put("name", "Pankaj Kumar");
-		jp.put("age", 32);
-		
-		JSONArray cities = new JSONArray();
-		cities.add("New York");
-		cities.add("Bangalore");
-		cities.add("San Francisco");
-
-		jp.put("cities", cities);
-		
-		// to write : jp.toJSONString()
-		monIOCommandes.ecrireReseau(jp.toJSONString());
-		
 		// Set userType
 		String userType = "";
 		userType = monIOCommandes.lireEcran();
@@ -86,10 +72,22 @@ public class Principale {
 		String texteEntre = "";
 		while(!texteEntre.equals("quit")) {
 			texteEntre = monIOCommandes.lireEcran();
-			monIOCommandes.ecrireReseau(texteEntre);
-			System.out.println("Texte entré :" + texteEntre);
-			//repServ = monIOCommandes.lireReseau();
-			//System.out.println("Rep Serv :" + repServ);
+			
+			if(texteEntre.equals("POC_JSON")) {
+				// TESTER LE JSON
+				Questionnaire question = new Questionnaire(username);
+				question.setQuestionType("UNIQUE");
+				question.setLabel("Combien font léès çhiffres 1 + 3 ?");
+				question.addAnswer("4");
+				question.addAnswer("5");
+				question.addAnswer("6");
+				question.removeAnswer("5");
+				monIOCommandes.ecrireReseau((String) question.getQuestions());
+			}
+			else {
+				monIOCommandes.ecrireReseau(texteEntre);
+				System.out.println("Texte entré :" + texteEntre);
+			}
 		}
 
 		try {

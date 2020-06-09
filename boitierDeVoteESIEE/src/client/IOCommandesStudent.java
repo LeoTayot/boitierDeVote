@@ -5,6 +5,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
+import java.util.Iterator;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class IOCommandesStudent extends Thread {
 
@@ -21,6 +27,7 @@ public class IOCommandesStudent extends Thread {
 		return maChaussette;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void run() {
 		String message = "";
@@ -29,6 +36,30 @@ public class IOCommandesStudent extends Thread {
 			// TODO : Lire uniquement Teacher
 			message = this.lireReseau();
 			ecrireEcran(message);
+			
+			// Parse JSON
+			JSONParser parser = new JSONParser();
+			Object jsonObj = null;
+			try {
+				jsonObj = parser.parse(message);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			JSONObject jsonObject = (JSONObject) jsonObj;
+			String questionType = (String) jsonObject.get("questionType");
+			String teacher = (String) jsonObject.get("teacher");
+			String label = (String) jsonObject.get("label");
+
+			System.out.println("NOUVELLE QUESTION RECUE");
+			System.out.println("Teacher = " + teacher);
+			System.out.println("QuestionType = " + questionType);
+			System.out.println("Label = " + label);
+			
+			JSONArray possibleAnswer = (JSONArray) jsonObject.get("possibleAnswer");
+			Iterator<String> answer = possibleAnswer.iterator();
+			while (answer.hasNext()) {
+				System.out.println("Answer = " + answer.next());
+			}
 		}
 	}
 

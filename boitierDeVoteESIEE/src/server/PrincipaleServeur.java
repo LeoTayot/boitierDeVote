@@ -53,23 +53,7 @@ public class PrincipaleServeur {
 				String username = t.lireReseau();
 				t.ecrireReseauUnicast("Username OK");
 				
-				// Test JSON
-				JSONParser parser = new JSONParser();
-				String reader = t.lireReseau();;
-				Object jsonObj = parser.parse(reader);
-				JSONObject jsonObject = (JSONObject) jsonObj;
-				String name = (String) jsonObject.get("name");
-				System.out.println("Name = " + name);
-				long age = (Long) jsonObject.get("age");
-				System.out.println("Age = " + age);
-				JSONArray cities = (JSONArray) jsonObject.get("cities");
-				Iterator<String> it = cities.iterator();
-				while (it.hasNext()) {
-					System.out.println("City = " + it.next());
-				}
-				
 				String role = t.lireReseau();
-				
 				if(role.equals("T")) {
 					System.out.println("TEACHER !");
 					IOCommandesTeacher teacher = new IOCommandesTeacher(socketClient, isPlaceFree);

@@ -119,7 +119,7 @@ public class IOCommandesTeacher extends Thread {
 					&& tmpUserClass.equals("server.IOCommandesStudent")) {
 					retcode = true;
 					tmp = new PrintStream(PrincipaleServeur.lesChaussettes[i].getOutputStream());
-					tmp.println(userName+ "> " +message);
+					tmp.println(message);
 				}
 
 			} catch (IOException e) {
