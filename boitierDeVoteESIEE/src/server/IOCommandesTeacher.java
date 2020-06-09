@@ -188,7 +188,24 @@ public class IOCommandesTeacher extends Thread {
 				while (!message.equals("quit")) {
 					message = lireReseau();
 					if(message.equals("quit")) {
+						
+						String currentUsername = PrincipaleServeur.userList.get(maChaussette);
+
+						String currentRole = "";
+						String currentName = "";
+						JSONObject userToDelete = null;
+						for( Object user : PrincipaleServeur.users) {
+							currentRole = (String) ((JSONObject) user).get("role");
+							currentName = (String) ((JSONObject) user).get("username");
+							if(currentRole.equals("T") && currentName.equals(currentUsername)) {
+								userToDelete = (JSONObject) user;
+							}
+						}
+
+						PrincipaleServeur.users.remove(userToDelete);
 						ecrireReseauUnicast("EXIT");
+						PrincipaleServeur.userList.remove(maChaussette);
+						
 						continue;
 					}
 					ecrireEcran(PrincipaleServeur.userList.get(maChaussette) + ">" + message);

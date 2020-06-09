@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
+import java.util.HashMap;
+
+import org.json.simple.JSONObject;
 
 public class IOCommandesStudent extends Thread {
 
@@ -158,7 +161,24 @@ public class IOCommandesStudent extends Thread {
 				while (!message.equals("quit")) {
 					message = lireReseau();
 					if(message.equals("quit")) {
+						
+						String currentUsername = PrincipaleServeur.userList.get(maChaussette);
+
+						String currentRole = "";
+						String currentName = "";
+						JSONObject userToDelete = null;
+						for( Object user : PrincipaleServeur.users) {
+							currentRole = (String) ((JSONObject) user).get("role");
+							currentName = (String) ((JSONObject) user).get("username");
+							if(currentRole.equals("S") && currentName.equals(currentUsername)) {
+								userToDelete = (JSONObject) user;
+							}
+						}
+
+						PrincipaleServeur.users.remove(userToDelete);
 						ecrireReseauUnicast("EXIT");
+						PrincipaleServeur.userList.remove(maChaussette);
+						
 						continue;
 					}
 					ecrireEcran(PrincipaleServeur.userList.get(maChaussette) + ">" + message);
