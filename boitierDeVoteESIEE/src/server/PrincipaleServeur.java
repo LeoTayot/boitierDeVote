@@ -3,7 +3,12 @@ package server;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 public class PrincipaleServeur {
 	public static int port = 4502;
@@ -24,6 +29,7 @@ public class PrincipaleServeur {
 		return -1;
 	}
 
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		
 		try {
@@ -46,6 +52,22 @@ public class PrincipaleServeur {
 
 				String username = t.lireReseau();
 				t.ecrireReseauUnicast("Username OK");
+				
+				// Test JSON
+				JSONParser parser = new JSONParser();
+				String reader = t.lireReseau();;
+				Object jsonObj = parser.parse(reader);
+				JSONObject jsonObject = (JSONObject) jsonObj;
+				String name = (String) jsonObject.get("name");
+				System.out.println("Name = " + name);
+				long age = (Long) jsonObject.get("age");
+				System.out.println("Age = " + age);
+				JSONArray cities = (JSONArray) jsonObject.get("cities");
+				Iterator<String> it = cities.iterator();
+				while (it.hasNext()) {
+					System.out.println("City = " + it.next());
+				}
+				
 				String role = t.lireReseau();
 				
 				if(role.equals("T")) {

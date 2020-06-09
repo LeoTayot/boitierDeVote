@@ -4,10 +4,14 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import server.PrincipaleServeur;
 
 public class Principale {
 
+	@SuppressWarnings("unchecked")
 	public static void main(String args[]) {
 		Socket chaussette = null;
 		IOCommandesTeacher teacher = null;
@@ -40,6 +44,20 @@ public class Principale {
 		monIOCommandes.ecrireReseau(username);
 		repServ = monIOCommandes.lireReseau();
 		System.out.println("Rep Serv :" + repServ);
+		
+		JSONObject  jp = new JSONObject ();
+		jp.put("name", "Pankaj Kumar");
+		jp.put("age", 32);
+		
+		JSONArray cities = new JSONArray();
+		cities.add("New York");
+		cities.add("Bangalore");
+		cities.add("San Francisco");
+
+		jp.put("cities", cities);
+		
+		// to write : jp.toJSONString()
+		monIOCommandes.ecrireReseau(jp.toJSONString());
 		
 		// Set userType
 		String userType = "";
