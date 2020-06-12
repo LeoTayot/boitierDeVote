@@ -91,9 +91,13 @@ public class Principale {
 				}
 			}
 			else {
-				System.out.println("Réponse entrée :" + texteEntre);
-				student.sendAnswer(texteEntre);
-				//monIOCommandes.ecrireReseau(texteEntre);
+				if(texteEntre.equals("quit")) {
+					monIOCommandes.ecrireReseau(texteEntre);
+				}
+				else {
+					System.out.println("Réponse entrée :" + texteEntre);
+					student.sendAnswer(texteEntre);					
+				}
 			}
 		}
 
