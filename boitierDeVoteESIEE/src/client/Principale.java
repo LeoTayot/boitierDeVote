@@ -4,10 +4,14 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import server.PrincipaleServeur;
 
 public class Principale {
 
+	@SuppressWarnings("unchecked")
 	public static void main(String args[]) {
 		Socket chaussette = null;
 		IOCommandesTeacher teacher = null;
@@ -24,7 +28,7 @@ public class Principale {
 		IOCommandes monIOCommandes = null;
 		
 		int available = PrincipaleServeur.checkPlaceLibre(PrincipaleServeur.maxUsers, PrincipaleServeur.mesThreads);
-		System.out.println("Place available :" + available);
+//		System.out.println("Place available :" + available);
 		if (available == -1) {
 			monIOCommandes = new IOCommandes();
 			monIOCommandes.ecrireEcran("Il n'y a plus de place sur le serveur, veuillez rÃ©essayer ultÃ©rieurement.");
@@ -68,10 +72,33 @@ public class Principale {
 		String texteEntre = "";
 		while(!texteEntre.equals("quit")) {
 			texteEntre = monIOCommandes.lireEcran();
-			monIOCommandes.ecrireReseau(texteEntre);
-			System.out.println("Texte entré :" + texteEntre);
-			//repServ = monIOCommandes.lireReseau();
-			//System.out.println("Rep Serv :" + repServ);
+			
+			if(userType.equals("TEACHER")) {
+				if(texteEntre.equals("POC_JSON")) {
+					// TESTER LE JSON
+					Questionnaire question = new Questionnaire(username);
+					question.setQuestionType("UNIQUE");
+					question.setLabel("Combien font léès çhiffres 1 + 3 ?");
+					question.addAnswer("4");
+					question.addAnswer("5");
+					question.addAnswer("6");
+					question.removeAnswer("5");
+					monIOCommandes.ecrireReseau((String) question.getQuestions());
+				}
+				else {
+					monIOCommandes.ecrireReseau(texteEntre);
+					System.out.println("Texte entré :" + texteEntre);
+				}
+			}
+			else {
+				if(texteEntre.equals("quit")) {
+					monIOCommandes.ecrireReseau(texteEntre);
+				}
+				else {
+					System.out.println("Réponse entrée :" + texteEntre);
+					student.sendAnswer(texteEntre);					
+				}
+			}
 		}
 
 		try {

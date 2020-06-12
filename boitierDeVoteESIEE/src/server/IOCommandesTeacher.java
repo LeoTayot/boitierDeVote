@@ -5,6 +5,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
+import java.util.HashMap;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class IOCommandesTeacher extends Thread {
 
@@ -106,6 +111,27 @@ public class IOCommandesTeacher extends Thread {
 	
 	public boolean ecrireToStudent(String userName, String message) {
 		boolean retcode = false;
+		JSONParser parser = new JSONParser();
+		Object jsonObj = null;
+		try {
+			jsonObj = parser.parse(message);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		JSONObject jsonObject = (JSONObject) jsonObj;
+		String questionId = (String) jsonObject.get("questionId");
+
+		String currentRole = "";
+		for(Object user : PrincipaleServeur.users) {
+			currentRole = (String) ((JSONObject) user).get("role");
+			if(currentRole.equals("T")) {
+				continue;
+			}
+			((JSONObject) user).put("ans_" + questionId, null);
+		}
+		System.out.println("After question : ");
+		System.out.println(PrincipaleServeur.users.toJSONString());
+		
 		for (int i = 0; i < PrincipaleServeur.maxUsers; i++) {
 			PrintStream tmp = null;
 			if(PrincipaleServeur.mesThreads[i] == null) {
@@ -119,7 +145,7 @@ public class IOCommandesTeacher extends Thread {
 					&& tmpUserClass.equals("server.IOCommandesStudent")) {
 					retcode = true;
 					tmp = new PrintStream(PrincipaleServeur.lesChaussettes[i].getOutputStream());
-					tmp.println(userName+ "> " +message);
+					tmp.println(message);
 				}
 
 			} catch (IOException e) {
@@ -158,7 +184,24 @@ public class IOCommandesTeacher extends Thread {
 				while (!message.equals("quit")) {
 					message = lireReseau();
 					if(message.equals("quit")) {
+						
+						String currentUsername = PrincipaleServeur.userList.get(maChaussette);
+
+						String currentRole = "";
+						String currentName = "";
+						JSONObject userToDelete = null;
+						for( Object user : PrincipaleServeur.users) {
+							currentRole = (String) ((JSONObject) user).get("role");
+							currentName = (String) ((JSONObject) user).get("username");
+							if(currentRole.equals("T") && currentName.equals(currentUsername)) {
+								userToDelete = (JSONObject) user;
+							}
+						}
+
+						PrincipaleServeur.users.remove(userToDelete);
 						ecrireReseauUnicast("EXIT");
+						PrincipaleServeur.userList.remove(maChaussette);
+						
 						continue;
 					}
 					ecrireEcran(PrincipaleServeur.userList.get(maChaussette) + ">" + message);

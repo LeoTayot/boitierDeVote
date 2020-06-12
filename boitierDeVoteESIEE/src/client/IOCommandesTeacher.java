@@ -25,6 +25,7 @@ public class IOCommandesTeacher extends Thread {
 	public void run() {
 		String message = "";
 		ecrireEcran("Connexion au serveur etablie !");
+
 		while(!Thread.interrupted()) {
 			// TODO : Lire uniquement Teacher
 			message = this.lireReseau();
