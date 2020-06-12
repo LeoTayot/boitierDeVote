@@ -56,6 +56,7 @@ public class PrincipaleServeur {
 				
 				String role = t.lireReseau();
 				JSONObject user = new JSONObject();
+				user.put("socketId", socketClient);
 				user.put("username", username);
 				user.put("role", role);
 				users.add(user);

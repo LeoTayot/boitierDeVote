@@ -73,20 +73,27 @@ public class Principale {
 		while(!texteEntre.equals("quit")) {
 			texteEntre = monIOCommandes.lireEcran();
 			
-			if(texteEntre.equals("POC_JSON")) {
-				// TESTER LE JSON
-				Questionnaire question = new Questionnaire(username);
-				question.setQuestionType("UNIQUE");
-				question.setLabel("Combien font léès çhiffres 1 + 3 ?");
-				question.addAnswer("4");
-				question.addAnswer("5");
-				question.addAnswer("6");
-				question.removeAnswer("5");
-				monIOCommandes.ecrireReseau((String) question.getQuestions());
+			if(userType.equals("TEACHER")) {
+				if(texteEntre.equals("POC_JSON")) {
+					// TESTER LE JSON
+					Questionnaire question = new Questionnaire(username);
+					question.setQuestionType("UNIQUE");
+					question.setLabel("Combien font léès çhiffres 1 + 3 ?");
+					question.addAnswer("4");
+					question.addAnswer("5");
+					question.addAnswer("6");
+					question.removeAnswer("5");
+					monIOCommandes.ecrireReseau((String) question.getQuestions());
+				}
+				else {
+					monIOCommandes.ecrireReseau(texteEntre);
+					System.out.println("Texte entré :" + texteEntre);
+				}
 			}
 			else {
-				monIOCommandes.ecrireReseau(texteEntre);
-				System.out.println("Texte entré :" + texteEntre);
+				System.out.println("Réponse entrée :" + texteEntre);
+				student.sendAnswer(texteEntre);
+				//monIOCommandes.ecrireReseau(texteEntre);
 			}
 		}
 

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.json.simple.JSONArray;
@@ -13,6 +14,12 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class IOCommandesStudent extends Thread {
+
+	private String currentQuestion;
+	private String currentQuestionType;
+	private String currentTeacher;
+	private String currentLabel;
+	private JSONArray possibleAnswer;
 
 	private BufferedReader lectureEcran;
 	private BufferedReader lectureReseau;
@@ -43,23 +50,28 @@ public class IOCommandesStudent extends Thread {
 			}
 			// Parse JSON
 			JSONParser parser = new JSONParser();
+			JSONObject jsonObject = null;
 			Object jsonObj = null;
+	
 			try {
 				jsonObj = parser.parse(message);
+				jsonObject = (JSONObject) jsonObj;
+				currentQuestion = (String) jsonObject.get("questionId");
+				System.out.println("Current question asked : " + currentQuestion);
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			JSONObject jsonObject = (JSONObject) jsonObj;
-			String questionType = (String) jsonObject.get("questionType");
-			String teacher = (String) jsonObject.get("teacher");
-			String label = (String) jsonObject.get("label");
+			
+			this.currentQuestionType = (String) jsonObject.get("questionType");
+			this.currentTeacher = (String) jsonObject.get("teacher");
+			this.currentLabel = (String) jsonObject.get("label");
+			this.possibleAnswer = (JSONArray) jsonObject.get("possibleAnswer");
 
 			System.out.println("NOUVELLE QUESTION RECUE");
-			System.out.println("Teacher = " + teacher);
-			System.out.println("QuestionType = " + questionType);
-			System.out.println("Label = " + label);
+			System.out.println("Teacher = " + currentTeacher);
+			System.out.println("QuestionType = " + currentQuestionType);
+			System.out.println("Label = " + currentLabel);
 			
-			JSONArray possibleAnswer = (JSONArray) jsonObject.get("possibleAnswer");
 			Iterator<String> answer = possibleAnswer.iterator();
 			while (answer.hasNext()) {
 				System.out.println("Answer = " + answer.next());
@@ -138,6 +150,28 @@ public class IOCommandesStudent extends Thread {
 	public void ecrireReseau(String texte) {
 		if (maChaussette != null)
 			ecritureReseau.println(texte);
+	}
+	
+	public void sendAnswer(String answer) {		
+		JSONObject formatedAnswer = new JSONObject();
+		formatedAnswer.put("questionId", this.currentQuestion);
+		
+		switch(currentQuestionType) {
+			case "OPEN" :
+				formatedAnswer.put("answer", answer);
+				break;
+			case "UNIQUE" :
+				// Formater result into string
+				formatedAnswer.put("answer", answer);
+				break;
+			case "MULTIPLE" :
+				// Formater result into string
+				formatedAnswer.put("answer", answer);
+				break;
+		}
+		
+		System.out.println(formatedAnswer.toJSONString());
+		this.ecrireReseau(formatedAnswer.toJSONString());
 	}
 
 	public String lireReseau() {

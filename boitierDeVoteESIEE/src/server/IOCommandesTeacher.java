@@ -121,19 +121,15 @@ public class IOCommandesTeacher extends Thread {
 		JSONObject jsonObject = (JSONObject) jsonObj;
 		String questionId = (String) jsonObject.get("questionId");
 
-
-		System.out.println("Before : ");
-		System.out.println(PrincipaleServeur.users.toJSONString());
-		
 		String currentRole = "";
 		for(Object user : PrincipaleServeur.users) {
 			currentRole = (String) ((JSONObject) user).get("role");
 			if(currentRole.equals("T")) {
 				continue;
 			}
-			((JSONObject) user).put("ans_" + questionId, false);
+			((JSONObject) user).put("ans_" + questionId, null);
 		}
-		System.out.println("After : ");
+		System.out.println("After question : ");
 		System.out.println(PrincipaleServeur.users.toJSONString());
 		
 		for (int i = 0; i < PrincipaleServeur.maxUsers; i++) {

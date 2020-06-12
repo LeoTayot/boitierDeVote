@@ -5,9 +5,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class IOCommandesStudent extends Thread {
 
@@ -115,20 +119,51 @@ public class IOCommandesStudent extends Thread {
 				continue;
 			}
 			
+			String firstChar = message.substring(0, 1);
+			if(!firstChar.equals("{")) {
+				continue;
+			}
+
 			String tmpUserClass = PrincipaleServeur.mesThreads[i].getClass().getName();
+
+			JSONParser parser = new JSONParser();
+			JSONObject jsonObject = null;
+			Object jsonObj = null;
+			try {
+				jsonObj = parser.parse(message);
+				jsonObject = (JSONObject) jsonObj;
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			
+			for(Object user : PrincipaleServeur.users) {
+				Socket currentId = (Socket) ((JSONObject) user).get("socketId");
+				if(currentId.equals(maChaussette)) {
+					// set Answer
+					String questionId = (String) jsonObject.get("questionId");
+					String answer = (String) jsonObject.get("answer");
+					((JSONObject) user).put("ans_"+questionId, answer);
+				}
+			}
+			jsonObject.put("studentName", userName);
+			
 			try {
 				if (PrincipaleServeur.lesChaussettes[i] != null
 					&& tmpUserClass != null
 					&& tmpUserClass.equals("server.IOCommandesTeacher")) {
 					retcode = true;
 					tmp = new PrintStream(PrincipaleServeur.lesChaussettes[i].getOutputStream());
-					tmp.println(userName+ "> " +message);
+					tmp.println(jsonObject.toString());
 				}
 
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
+		
+		System.out.println("ICI");
+		System.out.println(PrincipaleServeur.users.toJSONString());
+		System.out.println("STOP");
 		return retcode;
 	}
 
