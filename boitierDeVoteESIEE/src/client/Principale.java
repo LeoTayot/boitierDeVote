@@ -10,8 +10,9 @@ import org.json.simple.JSONObject;
 import server.PrincipaleServeur;
 
 public class Principale {
-
+	
 	@SuppressWarnings("unchecked")
+	
 	public static void main(String args[]) {
 		Socket chaussette = null;
 		IOCommandesTeacher teacher = null;
@@ -43,13 +44,11 @@ public class Principale {
 		username = monIOCommandes.lireEcran();
 		monIOCommandes.ecrireReseau(username);
 		repServ = monIOCommandes.lireReseau();
-		System.out.println("Rep Serv :" + repServ);
 		
 		// Set userType
 		String userType = "";
 		userType = monIOCommandes.lireEcran();
 		monIOCommandes.ecrireReseau(userType);
-		System.out.println("User Type :" + userType);
 		repServ = monIOCommandes.lireReseau();
 		switch(repServ) {
 			case "STUDENT" :
