@@ -54,7 +54,7 @@ public class Principale {
 			case "STUDENT" :
 				userType = "STUDENT";
 				System.out.println("STUDENT CONNECTED");
-				student = new IOCommandesStudent(chaussette);
+				student = new IOCommandesStudent(chaussette, username);
 				student.start();
 				break;
 			case "TEACHER" :

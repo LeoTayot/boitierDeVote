@@ -16,12 +16,13 @@ import org.json.simple.parser.ParseException;
 import graphics.ClientStudentUI;
 
 public class IOCommandesStudent extends Thread {
-
-	private String currentQuestion;
-	private String currentQuestionType;
-	private String currentTeacher;
-	private String currentLabel;
-	private JSONArray possibleAnswer;
+	private String username;
+	
+	public String currentQuestion;
+	public String currentQuestionType;
+	public String currentTeacher;
+	public String currentLabel;
+	public JSONArray possibleAnswer;
 
 	private BufferedReader lectureEcran;
 	private BufferedReader lectureReseau;
@@ -154,7 +155,6 @@ public class IOCommandesStudent extends Thread {
 					this.studentUI.typeQuestion((String) jsonObject.get("questionType"));
 					break;
 			}
-		
 			
 			this.studentUI.repaint();
 			System.out.println("TRY TO CHANGE VALUE");
@@ -182,8 +182,9 @@ public class IOCommandesStudent extends Thread {
 
 	}
 
-	public IOCommandesStudent(Socket uneChaussette) {
-
+	public IOCommandesStudent(Socket uneChaussette, String username) {
+		this.username = username;
+		
 		// Partie en local
 		InputStreamReader monInputStream = new InputStreamReader(System.in);
 		lectureEcran = new BufferedReader(monInputStream);
@@ -208,7 +209,6 @@ public class IOCommandesStudent extends Thread {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 	
 	public void clearAvailableAnswerInGui() {
@@ -267,6 +267,8 @@ public class IOCommandesStudent extends Thread {
 	public void sendAnswer(String answer) {		
 		JSONObject formatedAnswer = new JSONObject();
 		formatedAnswer.put("questionId", this.currentQuestion);
+		formatedAnswer.put("questionType", this.currentQuestionType);
+		formatedAnswer.put("studentName", this.username);
 		
 		switch(currentQuestionType) {
 			case "OPEN" :

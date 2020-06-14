@@ -5,19 +5,32 @@
  */
 package graphics;
 
+import org.json.simple.JSONArray;
+
+import client.AnswerData;
+import client.IOCommandesStudent;
+import client.IOCommandesTeacher;
+import client.Questionnaire;
+
 /**
  *
  * @author steau_000
  */
 public class ClientStudentUI extends javax.swing.JFrame {
+	private IOCommandesStudent student;
 
     /**
-     * Creates new form ClientStudentUI
+     * Creates new form ClientTeacherUI
      */
     public ClientStudentUI() {
         initComponents();
     }
-
+    
+    public ClientStudentUI(String username, IOCommandesStudent student) {
+        initComponents();
+        this.student = student;
+        this.student.setUI(this);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,12 +67,20 @@ public class ClientStudentUI extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         textAreaOpenAnswer = new javax.swing.JTextArea();
         buttonSendAnswer = new javax.swing.JButton();
+        
+        
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Client Student");
         setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
 
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
+        
         jPanelQuestion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Question en cours", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
 
         jTextPaneQuestion.setEditable(false);
@@ -240,6 +261,12 @@ public class ClientStudentUI extends javax.swing.JFrame {
             }
         });
 
+        buttonSendAnswer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendAnswer();
+            }
+        });
+
         javax.swing.GroupLayout jPanelMultipleAnswerLayout = new javax.swing.GroupLayout(jPanelMultipleAnswer);
         jPanelMultipleAnswer.setLayout(jPanelMultipleAnswerLayout);
         jPanelMultipleAnswerLayout.setHorizontalGroup(
@@ -344,10 +371,6 @@ public class ClientStudentUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
-    
-    
     private void radioAnswer4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAnswer4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_radioAnswer4ActionPerformed
@@ -388,28 +411,82 @@ public class ClientStudentUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_radioAnwser1ActionPerformed
 
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+    	this.student.ecrireReseau("quit");
+    	this.student.ecrireEcran("BYE BYE");
+    	this.student.interrupt();
+    }//GEN-LAST:event_formWindowClosed
     
-    private void typeQuestion(int typeQ){
-        
-        int type = typeQ;
-                
-                switch(type){
-                    case 1:
-                        jPanelUniqueAnswer.setVisible(true);
-                        jPanelMultipleAnswer.setVisible(false);
-                        jPanelOpenAnswer.setVisible(false);
-                        break;
-                    case 2:
-                        jPanelUniqueAnswer.setVisible(false);
-                        jPanelMultipleAnswer.setVisible(true);
-                        jPanelOpenAnswer.setVisible(false);
-                        break;
-                    case 3:
-                        jPanelUniqueAnswer.setVisible(false);
-                        jPanelMultipleAnswer.setVisible(false);
-                        jPanelOpenAnswer.setVisible(true);
-                        break;
-                }
+    public void sendAnswer() {
+    	System.out.println("SEND ANSWER");
+		JSONArray answerArray = new JSONArray();
+    	String answer = "";
+    	
+    	switch(student.currentQuestionType) {
+    		case "OPEN" :
+    			System.out.println("Rep : "+textAreaOpenAnswer.getText());
+    			answer = textAreaOpenAnswer.getText();
+    			break;
+    		case "MULTIPLE" :
+    			if(checkBoxAnswer1.isSelected())
+    				answerArray.add("1");
+    			if(checkBoxAnswer2.isSelected())
+    				answerArray.add("2");
+    			if(checkBoxAnswer3.isSelected())
+    				answerArray.add("3");
+    			if(checkBoxAnswer4.isSelected())
+    				answerArray.add("4");
+    			if(checkBoxAnswer5.isSelected())
+    				answerArray.add("5");
+    			if(checkBoxAnswer6.isSelected())
+    				answerArray.add("6");
+    			if(checkBoxAnswer7.isSelected())
+    				answerArray.add("7");
+    			if(checkBoxAnswer8.isSelected())
+    				answerArray.add("8");
+    			answer = answerArray.toString();
+    			break;
+    		case "UNIQUE" :
+    			if(radioAnwser1.isSelected())
+        			answer = "1";
+    			if(radioAnswer2.isSelected())
+        			answer = "2";
+    			if(radioAnswer3.isSelected())
+        			answer = "3";
+    			if(radioAnswer4.isSelected())
+        			answer = "4";
+    			if(radioAnswer5.isSelected())
+        			answer = "5";
+    			if(radioAnswer6.isSelected())
+        			answer = "6";
+    			if(radioAnswer7.isSelected())
+        			answer = "7";
+    			if(radioAnswer8.isSelected())
+        			answer = "8";
+    			break;
+    	}
+    	student.sendAnswer(answer);
+    }
+    
+    public void typeQuestion(String typeQ){             
+        switch(typeQ){
+            case "UNIQUE":
+                jPanelUniqueAnswer.setVisible(true);
+                jPanelMultipleAnswer.setVisible(false);
+                jPanelOpenAnswer.setVisible(false);
+                break;
+            case "MULTIPLE":
+                jPanelUniqueAnswer.setVisible(false);
+                jPanelMultipleAnswer.setVisible(true);
+                jPanelOpenAnswer.setVisible(false);
+                break;
+            case "OPEN":
+                jPanelUniqueAnswer.setVisible(false);
+                jPanelMultipleAnswer.setVisible(false);
+                jPanelOpenAnswer.setVisible(true);
+                break;
+        }
     }
     
     /**
@@ -451,32 +528,32 @@ public class ClientStudentUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup answerButtonGroup;
-    private javax.swing.JButton buttonSendAnswer;
-    private javax.swing.JCheckBox checkBoxAnswer1;
-    private javax.swing.JCheckBox checkBoxAnswer2;
-    private javax.swing.JCheckBox checkBoxAnswer3;
-    private javax.swing.JCheckBox checkBoxAnswer4;
-    private javax.swing.JCheckBox checkBoxAnswer5;
-    private javax.swing.JCheckBox checkBoxAnswer6;
-    private javax.swing.JCheckBox checkBoxAnswer7;
-    private javax.swing.JCheckBox checkBoxAnswer8;
-    private javax.swing.JLabel jLabelTypeQuestion;
-    private javax.swing.JPanel jPanelMultipleAnswer;
-    private javax.swing.JPanel jPanelOpenAnswer;
-    private javax.swing.JPanel jPanelQuestion;
-    private javax.swing.JPanel jPanelUniqueAnswer;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextPane jTextPaneQuestion;
-    private javax.swing.JRadioButton radioAnswer2;
-    private javax.swing.JRadioButton radioAnswer3;
-    private javax.swing.JRadioButton radioAnswer4;
-    private javax.swing.JRadioButton radioAnswer5;
-    private javax.swing.JRadioButton radioAnswer6;
-    private javax.swing.JRadioButton radioAnswer7;
-    private javax.swing.JRadioButton radioAnswer8;
-    private javax.swing.JRadioButton radioAnwser1;
-    private javax.swing.JTextArea textAreaOpenAnswer;
+    public javax.swing.ButtonGroup answerButtonGroup;
+    public javax.swing.JButton buttonSendAnswer;
+    public javax.swing.JCheckBox checkBoxAnswer1;
+    public javax.swing.JCheckBox checkBoxAnswer2;
+    public javax.swing.JCheckBox checkBoxAnswer3;
+    public javax.swing.JCheckBox checkBoxAnswer4;
+    public javax.swing.JCheckBox checkBoxAnswer5;
+    public javax.swing.JCheckBox checkBoxAnswer6;
+    public javax.swing.JCheckBox checkBoxAnswer7;
+    public javax.swing.JCheckBox checkBoxAnswer8;
+    public javax.swing.JLabel jLabelTypeQuestion;
+    public javax.swing.JPanel jPanelMultipleAnswer;
+    public javax.swing.JPanel jPanelOpenAnswer;
+    public javax.swing.JPanel jPanelQuestion;
+    public javax.swing.JPanel jPanelUniqueAnswer;
+    public javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JScrollPane jScrollPane2;
+    public javax.swing.JTextPane jTextPaneQuestion;
+    public javax.swing.JRadioButton radioAnwser1;
+    public javax.swing.JRadioButton radioAnswer2;
+    public javax.swing.JRadioButton radioAnswer3;
+    public javax.swing.JRadioButton radioAnswer4;
+    public javax.swing.JRadioButton radioAnswer5;
+    public javax.swing.JRadioButton radioAnswer6;
+    public javax.swing.JRadioButton radioAnswer7;
+    public javax.swing.JRadioButton radioAnswer8;
+    public javax.swing.JTextArea textAreaOpenAnswer;
     // End of variables declaration//GEN-END:variables
 }
