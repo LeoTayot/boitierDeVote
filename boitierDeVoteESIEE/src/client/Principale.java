@@ -77,7 +77,7 @@ public class Principale {
 					// TESTER LE JSON
 					Questionnaire question = new Questionnaire(username);
 					question.setQuestionType("UNIQUE");
-					question.setLabel("Combien font léès çhiffres 1 + 3 ?");
+					question.setLabel("Combien font les ï¿½hiffres 1 + 3 ?");
 					question.addAnswer("4");
 					question.addAnswer("5");
 					question.addAnswer("6");
@@ -86,7 +86,7 @@ public class Principale {
 				}
 				else {
 					monIOCommandes.ecrireReseau(texteEntre);
-					System.out.println("Texte entré :" + texteEntre);
+					System.out.println("Texte entre :" + texteEntre);
 				}
 			}
 			else {
@@ -94,7 +94,7 @@ public class Principale {
 					monIOCommandes.ecrireReseau(texteEntre);
 				}
 				else {
-					System.out.println("Réponse entrée :" + texteEntre);
+					System.out.println("Reponse entree :" + texteEntre);
 					student.sendAnswer(texteEntre);					
 				}
 			}
