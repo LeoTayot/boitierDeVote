@@ -5,8 +5,18 @@
  */
 package graphics;
 
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+import client.IOCommandes;
+import client.IOCommandesStudent;
+import client.IOCommandesTeacher;
+import client.Principale;
+import server.PrincipaleServeur;
 
 /**
  *
@@ -136,11 +146,62 @@ public class boitierDeVoteUI extends JFrame {
     }//GEN-LAST:event_buttonQuitActionPerformed
 
     private void studentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentButtonActionPerformed
-        JOptionPane.showMessageDialog(null, "Bouton Student");
+    	this.setVisible(false);
+    	String username = textFieldUsername.getText();
+    	String role = "S";
+    	
+    	JOptionPane.showMessageDialog(null, "Bouton Student");
     }//GEN-LAST:event_studentButtonActionPerformed
 
     private void teacherButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teacherButtonActionPerformed
-        new ClientTeacherUI().setVisible(true);
+    	this.setVisible(false);
+    	String username = textFieldUsername.getText();
+    	String role = "T";
+    	    	
+    	Socket chaussette = null;
+		IOCommandesTeacher teacher = null;
+
+		try {
+			chaussette = new Socket("127.0.0.1", 4502);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		IOCommandes monIOCommandes = null;
+		
+		int available = PrincipaleServeur.checkPlaceLibre(PrincipaleServeur.maxUsers, PrincipaleServeur.mesThreads);
+//		System.out.println("Place available :" + available);
+		if (available == -1) {
+			monIOCommandes = new IOCommandes();
+			monIOCommandes.ecrireEcran("Il n'y a plus de place sur le serveur, veuillez réessayer ultérieurement.");
+		} else {
+			monIOCommandes = new IOCommandes(chaussette);
+		}
+		
+		String repServ = "";
+		
+		monIOCommandes.ecrireReseau(username);
+		repServ = monIOCommandes.lireReseau();
+		monIOCommandes.ecrireReseau("T");
+		repServ = monIOCommandes.lireReseau();
+		String userType = "TEACHER";
+		
+		switch(repServ) {
+			case "TEACHER" :
+				userType = "TEACHER";
+				System.out.println("TEACHER CONNECTED");
+				teacher = new IOCommandesTeacher(chaussette);
+				teacher.start();
+				break;
+			default :
+				// Error
+				break;
+		}
+    	
+    	new ClientTeacherUI(username, teacher).setVisible(true);
     }//GEN-LAST:event_teacherButtonActionPerformed
 
     private void textFieldUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldUsernameActionPerformed

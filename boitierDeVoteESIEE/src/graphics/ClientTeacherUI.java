@@ -5,17 +5,29 @@
  */
 package graphics;
 
+import client.IOCommandes;
+import client.IOCommandesTeacher;
+import client.Questionnaire;
+
 /**
  *
  * @author steau_000
  */
 public class ClientTeacherUI extends javax.swing.JFrame {
-
+	private Questionnaire question;
+	private IOCommandesTeacher teacher;
+	
     /**
      * Creates new form ClientTeacherUI
      */
     public ClientTeacherUI() {
         initComponents();
+    }
+    
+    public ClientTeacherUI(String username, IOCommandesTeacher teacher) {
+        initComponents();
+        this.question = new Questionnaire(username);
+        this.teacher = teacher;
     }
     
     private int nbAnswer = 0;
@@ -28,6 +40,7 @@ public class ClientTeacherUI extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         popupAnswer = new javax.swing.JFrame();
         jPanelPopup1 = new javax.swing.JPanel();
@@ -146,7 +159,7 @@ public class ClientTeacherUI extends javax.swing.JFrame {
         setTitle("Client Teacher");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
             }
         });
@@ -251,6 +264,12 @@ public class ClientTeacherUI extends javax.swing.JFrame {
         buttonBackMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonBackMenuActionPerformed(evt);
+            }
+        });
+        
+        buttonValidateFinal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	buttonValidateFinalActionPerformed(evt);
             }
         });
 
@@ -423,13 +442,25 @@ public class ClientTeacherUI extends javax.swing.JFrame {
     private void comboBoxQuestionTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxQuestionTypeActionPerformed
         
         String index = (String)comboBoxQuestionType.getSelectedItem();
-        
+        System.out.println(comboBoxQuestionType.getSelectedItem());
         if (index.equals("<Choisir>") || index.equals("Ouverte")){
             labelAnswer.setVisible(false);
             buttonAddAnswer.setVisible(false);
         }else{
             labelAnswer.setVisible(true);
             buttonAddAnswer.setVisible(true);
+        }
+        
+        switch(index) {
+        	case "Choix unique" :
+        		this.question.setQuestionType("UNIQUE");
+        		break;
+        	case "Choix multiple" :
+        		this.question.setQuestionType("MULTIPLE");
+        		break;
+        	case "Ouverte" :
+        		this.question.setQuestionType("OPEN");
+        		break;
         }
         
     }//GEN-LAST:event_comboBoxQuestionTypeActionPerformed
@@ -444,7 +475,7 @@ public class ClientTeacherUI extends javax.swing.JFrame {
 
     private void buttonValidateAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonValidateAnswerActionPerformed
         
-        
+    	this.question.addAnswer(textAreaPopup.getText());
         
         switch(nbAnswer){
             case 0:
@@ -509,55 +540,63 @@ public class ClientTeacherUI extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonCancelAnswerActionPerformed
 
     private void buttonDeleteAnswer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteAnswer1ActionPerformed
-        labelCustomAnswer1.setVisible(false);
+    	this.question.removeAnswer(labelCustomAnswer1.getText());
+    	labelCustomAnswer1.setVisible(false);
         buttonDeleteAnswer1.setVisible(false);
         nbAnswer-=1;
     }//GEN-LAST:event_buttonDeleteAnswer1ActionPerformed
 
     private void buttonDeleteAnswer2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteAnswer2ActionPerformed
-        labelCustomAnswer2.setVisible(false);
+    	this.question.removeAnswer(labelCustomAnswer2.getText());
+    	labelCustomAnswer2.setVisible(false);
         buttonDeleteAnswer2.setVisible(false);
         buttonDeleteAnswer1.setVisible(true);
         nbAnswer-=1;
     }//GEN-LAST:event_buttonDeleteAnswer2ActionPerformed
 
     private void buttonDeleteAnswer3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteAnswer3ActionPerformed
-        labelCustomAnswer3.setVisible(false);
+    	this.question.removeAnswer(labelCustomAnswer3.getText());
+    	labelCustomAnswer3.setVisible(false);
         buttonDeleteAnswer3.setVisible(false);
         buttonDeleteAnswer2.setVisible(true);
         nbAnswer-=1;
     }//GEN-LAST:event_buttonDeleteAnswer3ActionPerformed
 
     private void buttonDeleteAnswer4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteAnswer4ActionPerformed
-        labelCustomAnswer4.setVisible(false);
+    	this.question.removeAnswer(labelCustomAnswer4.getText());
+    	labelCustomAnswer4.setVisible(false);
         buttonDeleteAnswer4.setVisible(false);
         buttonDeleteAnswer3.setVisible(true);
         nbAnswer-=1;
     }//GEN-LAST:event_buttonDeleteAnswer4ActionPerformed
 
     private void buttonDeleteAnswer5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteAnswer5ActionPerformed
-        labelCustomAnswer5.setVisible(false);
+    	this.question.removeAnswer(labelCustomAnswer5.getText());
+    	labelCustomAnswer5.setVisible(false);
         buttonDeleteAnswer5.setVisible(false);
         buttonDeleteAnswer4.setVisible(true);
         nbAnswer-=1;
     }//GEN-LAST:event_buttonDeleteAnswer5ActionPerformed
 
     private void buttonDeleteAnswer6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteAnswer6ActionPerformed
-        labelCustomAnswer6.setVisible(false);
+    	this.question.removeAnswer(labelCustomAnswer6.getText());
+    	labelCustomAnswer6.setVisible(false);
         buttonDeleteAnswer6.setVisible(false);
         buttonDeleteAnswer5.setVisible(true);
         nbAnswer-=1;
     }//GEN-LAST:event_buttonDeleteAnswer6ActionPerformed
 
     private void buttonDeleteAnswer7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteAnswer7ActionPerformed
-        labelCustomAnswer7.setVisible(false);
+    	this.question.removeAnswer(labelCustomAnswer7.getText());
+    	labelCustomAnswer7.setVisible(false);
         buttonDeleteAnswer7.setVisible(false);
         buttonDeleteAnswer6.setVisible(true);
         nbAnswer-=1;
     }//GEN-LAST:event_buttonDeleteAnswer7ActionPerformed
 
     private void buttonDeleteAnswer8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteAnswer8ActionPerformed
-        labelCustomAnswer8.setVisible(false);
+    	this.question.removeAnswer(labelCustomAnswer8.getText());
+    	labelCustomAnswer8.setVisible(false);
         buttonDeleteAnswer8.setVisible(false);
         buttonDeleteAnswer7.setVisible(true);
         nbAnswer-=1;
@@ -569,30 +608,20 @@ public class ClientTeacherUI extends javax.swing.JFrame {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
+    	this.teacher.ecrireReseau("quit");
+    	this.teacher.ecrireEcran("BYE BYE");
+    	this.teacher.interrupt();
     }//GEN-LAST:event_formWindowClosed
 
-    
-    private void startManagement(){
-        
-        labelCustomAnswer1.setVisible(false);
-        labelCustomAnswer2.setVisible(false);
-        labelCustomAnswer3.setVisible(false);
-        labelCustomAnswer4.setVisible(false);
-        labelCustomAnswer5.setVisible(false);
-        labelCustomAnswer6.setVisible(false);
-        labelCustomAnswer7.setVisible(false);
-        labelCustomAnswer8.setVisible(false);
-        
-        buttonDeleteAnswer1.setVisible(false);
-        buttonDeleteAnswer2.setVisible(false);
-        buttonDeleteAnswer3.setVisible(false);
-        buttonDeleteAnswer4.setVisible(false);
-        buttonDeleteAnswer5.setVisible(false);
-        buttonDeleteAnswer6.setVisible(false);
-        buttonDeleteAnswer7.setVisible(false);
-        buttonDeleteAnswer8.setVisible(false);
+    private void buttonValidateFinalActionPerformed(java.awt.event.ActionEvent evt) {
+    	System.out.println("VALIDATE");
+    	IOCommandes monIOCommandes = new IOCommandes();
+    	
+    	this.question.setLabel(textAreaQuestionText.getText());
+    	System.out.println((String) this.question.getQuestions());
+    	this.teacher.ecrireReseau((String) this.question.getQuestions());
     }
-
+    
     /**
      * @param args the command line arguments
      */
