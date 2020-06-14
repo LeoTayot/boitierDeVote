@@ -13,6 +13,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import graphics.ClientStudentUI;
+
 public class IOCommandesStudent extends Thread {
 
 	private String currentQuestion;
@@ -28,10 +30,14 @@ public class IOCommandesStudent extends Thread {
 	private PrintStream ecritureReseau;
 	
 	private Socket maChaussette;
-	//private WindowChat laFenetre;
+	private ClientStudentUI studentUI;
 
 	public Socket getMaChaussette() {
 		return maChaussette;
+	}
+	
+	public void setUI(ClientStudentUI ui) {
+		studentUI = ui;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -43,6 +49,10 @@ public class IOCommandesStudent extends Thread {
 			// TODO : Lire uniquement Teacher
 			message = this.lireReseau();
 			ecrireEcran(message);
+			
+			if(message == null || message.contentEquals("EXIT")) {
+				continue;
+			}
 			
 			String firstChar = message.substring(0, 1);
 			if(!firstChar.equals("{")) {
@@ -66,7 +76,89 @@ public class IOCommandesStudent extends Thread {
 			this.currentTeacher = (String) jsonObject.get("teacher");
 			this.currentLabel = (String) jsonObject.get("label");
 			this.possibleAnswer = (JSONArray) jsonObject.get("possibleAnswer");
-
+			
+			// Set VALUE IN GUI
+			this.studentUI.jTextPaneQuestion.setText((String) jsonObject.get("label"));
+			
+			switch((String) jsonObject.get("questionType")) {
+				case "MULTIPLE" :
+					clearAvailableAnswerInGui();
+					this.studentUI.jLabelTypeQuestion.setText("Plusieurs réponses sont possibles");
+					this.studentUI.typeQuestion((String) jsonObject.get("questionType"));
+					
+					switch(this.possibleAnswer.size()) {
+						case 8 :
+							this.studentUI.checkBoxAnswer8.setText((String) this.possibleAnswer.get(7));
+							this.studentUI.checkBoxAnswer8.setVisible(true);
+						case 7 :
+							this.studentUI.checkBoxAnswer7.setText((String) this.possibleAnswer.get(6));
+							this.studentUI.checkBoxAnswer7.setVisible(true);
+						case 6 :
+							this.studentUI.checkBoxAnswer6.setText((String) this.possibleAnswer.get(5));
+							this.studentUI.checkBoxAnswer6.setVisible(true);
+						case 5 :
+							this.studentUI.checkBoxAnswer5.setText((String) this.possibleAnswer.get(4));
+							this.studentUI.checkBoxAnswer5.setVisible(true);
+						case 4 :
+							this.studentUI.checkBoxAnswer4.setText((String) this.possibleAnswer.get(3));
+							this.studentUI.checkBoxAnswer4.setVisible(true);
+						case 3 :
+							this.studentUI.checkBoxAnswer3.setText((String) this.possibleAnswer.get(2));
+							this.studentUI.checkBoxAnswer3.setVisible(true);
+						case 2 :
+							this.studentUI.checkBoxAnswer2.setText((String) this.possibleAnswer.get(1));
+							this.studentUI.checkBoxAnswer2.setVisible(true);
+						case 1 :
+							this.studentUI.checkBoxAnswer1.setText((String) this.possibleAnswer.get(0));
+							this.studentUI.checkBoxAnswer1.setVisible(true);
+							break;
+					}
+					
+					break;
+				case "UNIQUE" :
+					clearAvailableAnswerInGui();
+					this.studentUI.jLabelTypeQuestion.setText("Une seule réponse n'est admise");
+					this.studentUI.typeQuestion((String) jsonObject.get("questionType"));
+					
+					switch(this.possibleAnswer.size()) {
+						case 8 :
+							this.studentUI.radioAnswer8.setText((String) this.possibleAnswer.get(7));
+							this.studentUI.radioAnswer8.setVisible(true);
+						case 7 :
+							this.studentUI.radioAnswer7.setText((String) this.possibleAnswer.get(6));
+							this.studentUI.radioAnswer7.setVisible(true);
+						case 6 :
+							this.studentUI.radioAnswer6.setText((String) this.possibleAnswer.get(5));
+							this.studentUI.radioAnswer6.setVisible(true);
+						case 5 :
+							this.studentUI.radioAnswer5.setText((String) this.possibleAnswer.get(4));
+							this.studentUI.radioAnswer5.setVisible(true);
+						case 4 :
+							this.studentUI.radioAnswer4.setText((String) this.possibleAnswer.get(3));
+							this.studentUI.radioAnswer4.setVisible(true);
+						case 3 :
+							this.studentUI.radioAnswer3.setText((String) this.possibleAnswer.get(2));
+							this.studentUI.radioAnswer3.setVisible(true);
+						case 2 :
+							this.studentUI.radioAnswer2.setText((String) this.possibleAnswer.get(1));
+							this.studentUI.radioAnswer2.setVisible(true);
+						case 1 :
+							this.studentUI.radioAnwser1.setText((String) this.possibleAnswer.get(0));
+							this.studentUI.radioAnwser1.setVisible(true);
+							break;
+					}
+					
+					break;
+				case "OPEN" :
+					this.studentUI.jLabelTypeQuestion.setText("Question ouverte");
+					this.studentUI.typeQuestion((String) jsonObject.get("questionType"));
+					break;
+			}
+		
+			
+			this.studentUI.repaint();
+			System.out.println("TRY TO CHANGE VALUE");
+/*
 			System.out.println("NOUVELLE QUESTION RECUE");
 			System.out.println("Teacher = " + currentTeacher);
 			System.out.println("QuestionType = " + currentQuestionType);
@@ -75,7 +167,7 @@ public class IOCommandesStudent extends Thread {
 			Iterator<String> answer = possibleAnswer.iterator();
 			while (answer.hasNext()) {
 				System.out.println("Answer = " + answer.next());
-			}
+			}*/
 		}
 	}
 
@@ -117,6 +209,26 @@ public class IOCommandesStudent extends Thread {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public void clearAvailableAnswerInGui() {
+		this.studentUI.radioAnwser1.setVisible(false);
+		this.studentUI.radioAnswer2.setVisible(false);
+		this.studentUI.radioAnswer3.setVisible(false);
+		this.studentUI.radioAnswer4.setVisible(false);
+		this.studentUI.radioAnswer5.setVisible(false);
+		this.studentUI.radioAnswer6.setVisible(false);
+		this.studentUI.radioAnswer7.setVisible(false);
+		this.studentUI.radioAnswer8.setVisible(false);
+		
+		this.studentUI.checkBoxAnswer1.setVisible(false);
+		this.studentUI.checkBoxAnswer2.setVisible(false);
+		this.studentUI.checkBoxAnswer3.setVisible(false);
+		this.studentUI.checkBoxAnswer4.setVisible(false);
+		this.studentUI.checkBoxAnswer5.setVisible(false);
+		this.studentUI.checkBoxAnswer6.setVisible(false);
+		this.studentUI.checkBoxAnswer7.setVisible(false);
+		this.studentUI.checkBoxAnswer8.setVisible(false);
 	}
 
 	public PrintStream getEcritureUser() {
