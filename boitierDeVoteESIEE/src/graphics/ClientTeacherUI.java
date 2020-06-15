@@ -416,6 +416,9 @@ public class ClientTeacherUI extends javax.swing.JFrame {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
             }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
         });
 
         jPanelQuestionType.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Type de question", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
@@ -1348,10 +1351,7 @@ public class ClientTeacherUI extends javax.swing.JFrame {
 
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        // TODO add your handling code here:
-    	this.teacher.ecrireReseau("quit");
-    	this.teacher.ecrireEcran("BYE BYE");
-    	this.teacher.interrupt();
+
     }//GEN-LAST:event_formWindowClosed
 
     private void buttonValidateFinalActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1518,6 +1518,12 @@ public class ClientTeacherUI extends javax.swing.JFrame {
     private void buttonOKUserAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOKUserAnswerActionPerformed
         jFrameUserAnswer.setVisible(false);
     }//GEN-LAST:event_buttonOKUserAnswerActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.teacher.ecrireReseau("quit");
+    	this.teacher.ecrireEcran("BYE BYE");
+    	this.teacher.interrupt();
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

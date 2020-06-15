@@ -149,7 +149,7 @@ public class IOCommandesStudent extends Thread {
 		switch(currentQuestionType) {
 			case "MULTIPLE" :
 				clearAvailableAnswerInGui();
-				this.studentUI.jLabelTypeQuestion.setText("Plusieurs réponses sont possibles");
+				this.studentUI.jLabelTypeQuestion.setText("Plusieurs reponses sont possibles");
 				this.studentUI.typeQuestion(currentQuestionType);
 				
 				switch(this.possibleAnswer.size()) {
@@ -183,7 +183,7 @@ public class IOCommandesStudent extends Thread {
 				break;
 			case "UNIQUE" :
 				clearAvailableAnswerInGui();
-				this.studentUI.jLabelTypeQuestion.setText("Une seule réponse n'est admise");
+				this.studentUI.jLabelTypeQuestion.setText("Une seule reponse est admise");
 				this.studentUI.typeQuestion(currentQuestionType);
 				
 				switch(this.possibleAnswer.size()) {

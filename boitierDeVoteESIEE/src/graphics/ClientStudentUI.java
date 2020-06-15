@@ -7,7 +7,6 @@ package graphics;
 
 import org.json.simple.JSONArray;
 
-import client.AnswerData;
 import client.IOCommandesStudent;
 import client.IOCommandesTeacher;
 import client.Questionnaire;
