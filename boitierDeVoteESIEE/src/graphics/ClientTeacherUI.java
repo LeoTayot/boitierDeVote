@@ -16,20 +16,20 @@ import client.Questionnaire;
 public class ClientTeacherUI extends javax.swing.JFrame {
 	private Questionnaire question;
 	private IOCommandesTeacher teacher;
-	
+
     /**
      * Creates new form ClientTeacherUI
      */
     public ClientTeacherUI() {
         initComponents();
     }
-    
+
     public ClientTeacherUI(String username, IOCommandesTeacher teacher) {
         initComponents();
         this.question = new Questionnaire(username);
         this.teacher = teacher;
     }
-    
+
     private int nbAnswer = 0;
 
     /**
@@ -40,7 +40,6 @@ public class ClientTeacherUI extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         popupAnswer = new javax.swing.JFrame();
         jPanelPopup1 = new javax.swing.JPanel();
@@ -49,14 +48,33 @@ public class ClientTeacherUI extends javax.swing.JFrame {
         textAreaPopup = new javax.swing.JTextArea();
         buttonValidateAnswer = new javax.swing.JButton();
         buttonCancelAnswer = new javax.swing.JButton();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jFrameUserAnswer = new javax.swing.JFrame();
+        jPanelUsername = new javax.swing.JPanel();
+        jLabelUsername = new javax.swing.JLabel();
+        jPanelUserAnswer = new javax.swing.JPanel();
+        labelUserAnswer1 = new javax.swing.JLabel();
+        labelUserAnswer2 = new javax.swing.JLabel();
+        labelUserAnswer3 = new javax.swing.JLabel();
+        labelUserAnswer4 = new javax.swing.JLabel();
+        labelUserAnswer5 = new javax.swing.JLabel();
+        labelUserAnswer6 = new javax.swing.JLabel();
+        labelUserAnswer7 = new javax.swing.JLabel();
+        labelUserAnswer8 = new javax.swing.JLabel();
+        jPanelUserQuestion = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        textPaneQuestionUserAnswer = new javax.swing.JTextPane();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextPane2 = new javax.swing.JTextPane();
+        buttonOKUserAnswer = new javax.swing.JButton();
+        jTabbedPane = new javax.swing.JTabbedPane();
         jPanelMain = new javax.swing.JPanel();
+        jPanelQuestionType = new javax.swing.JPanel();
         comboBoxQuestionType = new javax.swing.JComboBox<>();
-        labelAnswer = new javax.swing.JLabel();
-        labelQuestionText = new javax.swing.JLabel();
-        labelQuestionType = new javax.swing.JLabel();
+        jPanelQuestionText = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         textAreaQuestionText = new javax.swing.JTextArea();
+        jPanelAnswersChoice = new javax.swing.JPanel();
         buttonAddAnswer = new javax.swing.JButton();
         buttonDeleteAnswer1 = new javax.swing.JButton();
         labelCustomAnswer1 = new javax.swing.JLabel();
@@ -74,9 +92,58 @@ public class ClientTeacherUI extends javax.swing.JFrame {
         buttonDeleteAnswer7 = new javax.swing.JButton();
         labelCustomAnswer8 = new javax.swing.JLabel();
         buttonDeleteAnswer8 = new javax.swing.JButton();
-        buttonBackMenu = new javax.swing.JButton();
         buttonValidateFinal = new javax.swing.JButton();
         jPanelWaitAnswer = new javax.swing.JPanel();
+        jPanelQuestion = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        textPaneQuestion = new javax.swing.JTextPane();
+        jPanelUserList = new javax.swing.JPanel();
+        labelUser1 = new javax.swing.JLabel();
+        buttonUserAnswer1 = new javax.swing.JButton();
+        buttonUserAnswer2 = new javax.swing.JButton();
+        labelUser2 = new javax.swing.JLabel();
+        buttonUserAnswer3 = new javax.swing.JButton();
+        labelUser3 = new javax.swing.JLabel();
+        buttonUserAnswer4 = new javax.swing.JButton();
+        labelUser4 = new javax.swing.JLabel();
+        buttonUserAnswer5 = new javax.swing.JButton();
+        labelUser5 = new javax.swing.JLabel();
+        buttonUserAnswer6 = new javax.swing.JButton();
+        labelUser6 = new javax.swing.JLabel();
+        buttonUserAnswer7 = new javax.swing.JButton();
+        labelUser7 = new javax.swing.JLabel();
+        buttonUserAnswer8 = new javax.swing.JButton();
+        labelUser8 = new javax.swing.JLabel();
+        buttonUserAnswer9 = new javax.swing.JButton();
+        labelUser9 = new javax.swing.JLabel();
+        buttonUserAnswer10 = new javax.swing.JButton();
+        labelUser10 = new javax.swing.JLabel();
+        buttonUserAnswer11 = new javax.swing.JButton();
+        labelUser11 = new javax.swing.JLabel();
+        buttonUserAnswer12 = new javax.swing.JButton();
+        labelUser12 = new javax.swing.JLabel();
+        jPanelAnswersMulti = new javax.swing.JPanel();
+        labelOverviewAnswer1 = new javax.swing.JLabel();
+        progressBarAns1 = new javax.swing.JProgressBar();
+        labelOverviewAnswer2 = new javax.swing.JLabel();
+        progressBarAns2 = new javax.swing.JProgressBar();
+        labelOverviewAnswer3 = new javax.swing.JLabel();
+        progressBarAns3 = new javax.swing.JProgressBar();
+        labelOverviewAnswer4 = new javax.swing.JLabel();
+        progressBarAns4 = new javax.swing.JProgressBar();
+        labelOverviewAnswer5 = new javax.swing.JLabel();
+        progressBarAns5 = new javax.swing.JProgressBar();
+        labelOverviewAnswer6 = new javax.swing.JLabel();
+        progressBarAns6 = new javax.swing.JProgressBar();
+        labelOverviewAnswer7 = new javax.swing.JLabel();
+        progressBarAns7 = new javax.swing.JProgressBar();
+        labelOverviewAnswer8 = new javax.swing.JLabel();
+        progressBarAns8 = new javax.swing.JProgressBar();
+        jPanelOnAir = new javax.swing.JPanel();
+        buttonNewQuestion = new javax.swing.JButton();
+        jPanelAnswersOpen = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        textPaneQuickViewAnswers = new javax.swing.JTextPane();
 
         popupAnswer.setTitle("Ajouter une réponse");
         popupAnswer.setResizable(false);
@@ -156,13 +223,202 @@ public class ClientTeacherUI extends javax.swing.JFrame {
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
+        jFrameUserAnswer.setTitle("User Answer");
+        jFrameUserAnswer.setResizable(false);
+
+        jPanelUsername.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "User", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        jPanelUsername.setToolTipText("");
+
+        jLabelUsername.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabelUsername.setText("Username");
+
+        javax.swing.GroupLayout jPanelUsernameLayout = new javax.swing.GroupLayout(jPanelUsername);
+        jPanelUsername.setLayout(jPanelUsernameLayout);
+        jPanelUsernameLayout.setHorizontalGroup(
+            jPanelUsernameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelUsernameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(54, Short.MAX_VALUE))
+        );
+        jPanelUsernameLayout.setVerticalGroup(
+            jPanelUsernameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelUsernameLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabelUsername)
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+
+        jPanelUserAnswer.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Answer", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+
+        labelUserAnswer1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelUserAnswer1.setText("UserAnswer1");
+
+        labelUserAnswer2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelUserAnswer2.setText("UserAnswer2");
+
+        labelUserAnswer3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelUserAnswer3.setText("UserAnswer3");
+
+        labelUserAnswer4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelUserAnswer4.setText("UserAnswer4");
+
+        labelUserAnswer5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelUserAnswer5.setText("UserAnswer5");
+
+        labelUserAnswer6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelUserAnswer6.setText("UserAnswer6");
+
+        labelUserAnswer7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelUserAnswer7.setText("UserAnswer7");
+
+        labelUserAnswer8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelUserAnswer8.setText("UserAnswer8");
+
+        javax.swing.GroupLayout jPanelUserAnswerLayout = new javax.swing.GroupLayout(jPanelUserAnswer);
+        jPanelUserAnswer.setLayout(jPanelUserAnswerLayout);
+        jPanelUserAnswerLayout.setHorizontalGroup(
+            jPanelUserAnswerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelUserAnswerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelUserAnswerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelUserAnswer1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelUserAnswer2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelUserAnswer3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelUserAnswer4, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelUserAnswer5, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelUserAnswer6, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelUserAnswer7, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelUserAnswer8, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanelUserAnswerLayout.setVerticalGroup(
+            jPanelUserAnswerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelUserAnswerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelUserAnswer1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelUserAnswer2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelUserAnswer3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelUserAnswer4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelUserAnswer5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelUserAnswer6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelUserAnswer7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelUserAnswer8)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        labelUserAnswer1.setVisible(false);
+        labelUserAnswer2.setVisible(false);
+        labelUserAnswer3.setVisible(false);
+        labelUserAnswer4.setVisible(false);
+        labelUserAnswer5.setVisible(false);
+        labelUserAnswer6.setVisible(false);
+        labelUserAnswer7.setVisible(false);
+        labelUserAnswer8.setVisible(false);
+
+        jPanelUserQuestion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Question", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+
+        textPaneQuestionUserAnswer.setEditable(false);
+        jScrollPane4.setViewportView(textPaneQuestionUserAnswer);
+
+        javax.swing.GroupLayout jPanelUserQuestionLayout = new javax.swing.GroupLayout(jPanelUserQuestion);
+        jPanelUserQuestion.setLayout(jPanelUserQuestionLayout);
+        jPanelUserQuestionLayout.setHorizontalGroup(
+            jPanelUserQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelUserQuestionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4)
+                .addContainerGap())
+        );
+        jPanelUserQuestionLayout.setVerticalGroup(
+            jPanelUserQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelUserQuestionLayout.createSequentialGroup()
+                .addComponent(jScrollPane4)
+                .addContainerGap())
+        );
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Answer", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+
+        jScrollPane5.setViewportView(jTextPane2);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        buttonOKUserAnswer.setText("Ok");
+        buttonOKUserAnswer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonOKUserAnswerActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jFrameUserAnswerLayout = new javax.swing.GroupLayout(jFrameUserAnswer.getContentPane());
+        jFrameUserAnswer.getContentPane().setLayout(jFrameUserAnswerLayout);
+        jFrameUserAnswerLayout.setHorizontalGroup(
+            jFrameUserAnswerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jFrameUserAnswerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jFrameUserAnswerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelUserAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jFrameUserAnswerLayout.createSequentialGroup()
+                        .addComponent(jPanelUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanelUserQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrameUserAnswerLayout.createSequentialGroup()
+                .addContainerGap(267, Short.MAX_VALUE)
+                .addComponent(buttonOKUserAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(263, 263, 263))
+        );
+        jFrameUserAnswerLayout.setVerticalGroup(
+            jFrameUserAnswerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jFrameUserAnswerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jFrameUserAnswerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanelUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelUserQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelUserAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(buttonOKUserAnswer)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Client Teacher");
+        setLocation(new java.awt.Point(300, 50));
+        setPreferredSize(new java.awt.Dimension(1000, 800));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
             }
         });
+
+        jPanelQuestionType.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Type de question", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
 
         comboBoxQuestionType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<Choisir>", "Choix unique", "Choix multiple", "Ouverte" }));
         comboBoxQuestionType.addActionListener(new java.awt.event.ActionListener() {
@@ -171,15 +427,51 @@ public class ClientTeacherUI extends javax.swing.JFrame {
             }
         });
 
-        labelAnswer.setText("Réponse(s)");
+        javax.swing.GroupLayout jPanelQuestionTypeLayout = new javax.swing.GroupLayout(jPanelQuestionType);
+        jPanelQuestionType.setLayout(jPanelQuestionTypeLayout);
+        jPanelQuestionTypeLayout.setHorizontalGroup(
+            jPanelQuestionTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelQuestionTypeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(comboBoxQuestionType, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanelQuestionTypeLayout.setVerticalGroup(
+            jPanelQuestionTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelQuestionTypeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(comboBoxQuestionType, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
-        labelQuestionText.setText("Libellé de la question");
-
-        labelQuestionType.setText("Type de question");
+        jPanelQuestionText.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Libellé de la question", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
 
         textAreaQuestionText.setColumns(20);
         textAreaQuestionText.setRows(3);
         jScrollPane1.setViewportView(textAreaQuestionText);
+
+        javax.swing.GroupLayout jPanelQuestionTextLayout = new javax.swing.GroupLayout(jPanelQuestionText);
+        jPanelQuestionText.setLayout(jPanelQuestionTextLayout);
+        jPanelQuestionTextLayout.setHorizontalGroup(
+            jPanelQuestionTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanelQuestionTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelQuestionTextLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        jPanelQuestionTextLayout.setVerticalGroup(
+            jPanelQuestionTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 109, Short.MAX_VALUE)
+            .addGroup(jPanelQuestionTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelQuestionTextLayout.createSequentialGroup()
+                    .addGap(16, 16, 16)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(18, Short.MAX_VALUE)))
+        );
+
+        jPanelAnswersChoice.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Réponses", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
 
         buttonAddAnswer.setText("Ajouter une réponse");
         buttonAddAnswer.addActionListener(new java.awt.event.ActionListener() {
@@ -260,132 +552,75 @@ public class ClientTeacherUI extends javax.swing.JFrame {
             }
         });
 
-        buttonBackMenu.setText("Retour menu");
-        buttonBackMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonBackMenuActionPerformed(evt);
-            }
-        });
-        
-        buttonValidateFinal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	buttonValidateFinalActionPerformed(evt);
-            }
-        });
-
-        buttonValidateFinal.setText("Valider");
-
-        javax.swing.GroupLayout jPanelMainLayout = new javax.swing.GroupLayout(jPanelMain);
-        jPanelMain.setLayout(jPanelMainLayout);
-        jPanelMainLayout.setHorizontalGroup(
-            jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelMainLayout.createSequentialGroup()
-                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelMainLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelQuestionText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanelMainLayout.createSequentialGroup()
-                                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 721, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(comboBoxQuestionType, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 34, Short.MAX_VALUE))))
-                    .addGroup(jPanelMainLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(labelCustomAnswer8, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelCustomAnswer7, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelCustomAnswer6, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelCustomAnswer5, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelCustomAnswer4, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelCustomAnswer3, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelCustomAnswer2, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(buttonAddAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(labelCustomAnswer1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(buttonDeleteAnswer8)
-                            .addComponent(buttonDeleteAnswer7)
-                            .addComponent(buttonDeleteAnswer6)
-                            .addComponent(buttonDeleteAnswer5)
-                            .addComponent(buttonDeleteAnswer4)
-                            .addComponent(buttonDeleteAnswer3)
-                            .addComponent(buttonDeleteAnswer2)
-                            .addComponent(buttonDeleteAnswer1))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMainLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(buttonValidateFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100)
-                .addComponent(buttonBackMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(230, 230, 230))
-            .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelMainLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(labelQuestionType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
-        );
-        jPanelMainLayout.setVerticalGroup(
-            jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelMainLayout.createSequentialGroup()
-                .addGap(66, 66, 66)
-                .addComponent(comboBoxQuestionType, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout jPanelAnswersChoiceLayout = new javax.swing.GroupLayout(jPanelAnswersChoice);
+        jPanelAnswersChoice.setLayout(jPanelAnswersChoiceLayout);
+        jPanelAnswersChoiceLayout.setHorizontalGroup(
+            jPanelAnswersChoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAnswersChoiceLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelAnswersChoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelCustomAnswer8, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelCustomAnswer7, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelCustomAnswer6, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelCustomAnswer5, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelCustomAnswer4, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelCustomAnswer3, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelCustomAnswer2, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelAnswersChoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(buttonAddAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelCustomAnswer1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27)
-                .addComponent(labelQuestionText, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(labelAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelAnswersChoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(buttonDeleteAnswer8)
+                    .addComponent(buttonDeleteAnswer7)
+                    .addComponent(buttonDeleteAnswer6)
+                    .addComponent(buttonDeleteAnswer5)
+                    .addComponent(buttonDeleteAnswer4)
+                    .addComponent(buttonDeleteAnswer3)
+                    .addComponent(buttonDeleteAnswer2)
+                    .addComponent(buttonDeleteAnswer1))
+                .addContainerGap(428, Short.MAX_VALUE))
+        );
+        jPanelAnswersChoiceLayout.setVerticalGroup(
+            jPanelAnswersChoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAnswersChoiceLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(buttonAddAnswer)
                 .addGap(18, 18, 18)
-                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelAnswersChoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonDeleteAnswer1)
                     .addComponent(labelCustomAnswer1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelAnswersChoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonDeleteAnswer2)
                     .addComponent(labelCustomAnswer2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelAnswersChoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonDeleteAnswer3)
                     .addComponent(labelCustomAnswer3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelAnswersChoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonDeleteAnswer4)
                     .addComponent(labelCustomAnswer4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelAnswersChoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonDeleteAnswer5)
                     .addComponent(labelCustomAnswer5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelAnswersChoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonDeleteAnswer6)
                     .addComponent(labelCustomAnswer6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelAnswersChoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonDeleteAnswer7)
                     .addComponent(labelCustomAnswer7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelAnswersChoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonDeleteAnswer8)
                     .addComponent(labelCustomAnswer8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonBackMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonValidateFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelMainLayout.createSequentialGroup()
-                    .addGap(33, 33, 33)
-                    .addComponent(labelQuestionType, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(502, Short.MAX_VALUE)))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
-        labelAnswer.setVisible(false);
         buttonAddAnswer.setVisible(false);
         buttonDeleteAnswer1.setVisible(false);
         labelCustomAnswer1.setVisible(false);
@@ -404,20 +639,509 @@ public class ClientTeacherUI extends javax.swing.JFrame {
         labelCustomAnswer8.setVisible(false);
         buttonDeleteAnswer8.setVisible(false);
 
-        jTabbedPane2.addTab("Question", jPanelMain);
+        buttonValidateFinal.setText("Envoyer la question");
+        buttonValidateFinal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonValidateFinalActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelMainLayout = new javax.swing.GroupLayout(jPanelMain);
+        jPanelMain.setLayout(jPanelMainLayout);
+        jPanelMainLayout.setHorizontalGroup(
+            jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelMainLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelQuestionType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelQuestionText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelAnswersChoice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMainLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttonValidateFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(340, 340, 340))
+        );
+        jPanelMainLayout.setVerticalGroup(
+            jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelMainLayout.createSequentialGroup()
+                .addGap(9, 9, 9)
+                .addComponent(jPanelQuestionType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelQuestionText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelAnswersChoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(buttonValidateFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(147, Short.MAX_VALUE))
+        );
+
+        jTabbedPane.addTab("Question", jPanelMain);
+
+        jPanelQuestion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Question", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+
+        textPaneQuestion.setEditable(false);
+        jScrollPane2.setViewportView(textPaneQuestion);
+
+        javax.swing.GroupLayout jPanelQuestionLayout = new javax.swing.GroupLayout(jPanelQuestion);
+        jPanelQuestion.setLayout(jPanelQuestionLayout);
+        jPanelQuestionLayout.setHorizontalGroup(
+            jPanelQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelQuestionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
+        );
+        jPanelQuestionLayout.setVerticalGroup(
+            jPanelQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelQuestionLayout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanelUserList.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Users list", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+
+        labelUser1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelUser1.setText("User 1");
+
+        buttonUserAnswer1.setText("Voir la réponse");
+        buttonUserAnswer1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonUserAnswer1ActionPerformed(evt);
+            }
+        });
+
+        buttonUserAnswer2.setText("Voir la réponse");
+        buttonUserAnswer2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonUserAnswer2ActionPerformed(evt);
+            }
+        });
+
+        labelUser2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelUser2.setText("User 2");
+
+        buttonUserAnswer3.setText("Voir la réponse");
+        buttonUserAnswer3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonUserAnswer3ActionPerformed(evt);
+            }
+        });
+
+        labelUser3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelUser3.setText("User 3");
+
+        buttonUserAnswer4.setText("Voir la réponse");
+        buttonUserAnswer4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonUserAnswer4ActionPerformed(evt);
+            }
+        });
+
+        labelUser4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelUser4.setText("User 4");
+
+        buttonUserAnswer5.setText("Voir la réponse");
+        buttonUserAnswer5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonUserAnswer5ActionPerformed(evt);
+            }
+        });
+
+        labelUser5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelUser5.setText("User 5");
+
+        buttonUserAnswer6.setText("Voir la réponse");
+        buttonUserAnswer6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonUserAnswer6ActionPerformed(evt);
+            }
+        });
+
+        labelUser6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelUser6.setText("User 6");
+
+        buttonUserAnswer7.setText("Voir la réponse");
+        buttonUserAnswer7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonUserAnswer7ActionPerformed(evt);
+            }
+        });
+
+        labelUser7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelUser7.setText("User 7");
+
+        buttonUserAnswer8.setText("Voir la réponse");
+        buttonUserAnswer8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonUserAnswer8ActionPerformed(evt);
+            }
+        });
+
+        labelUser8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelUser8.setText("User 8");
+
+        buttonUserAnswer9.setText("Voir la réponse");
+        buttonUserAnswer9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonUserAnswer9ActionPerformed(evt);
+            }
+        });
+
+        labelUser9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelUser9.setText("User 9");
+
+        buttonUserAnswer10.setText("Voir la réponse");
+        buttonUserAnswer10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonUserAnswer10ActionPerformed(evt);
+            }
+        });
+
+        labelUser10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelUser10.setText("User 10");
+
+        buttonUserAnswer11.setText("Voir la réponse");
+        buttonUserAnswer11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonUserAnswer11ActionPerformed(evt);
+            }
+        });
+
+        labelUser11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelUser11.setText("User 11");
+
+        buttonUserAnswer12.setText("Voir la réponse");
+        buttonUserAnswer12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonUserAnswer12ActionPerformed(evt);
+            }
+        });
+
+        labelUser12.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelUser12.setText("User 12");
+
+        javax.swing.GroupLayout jPanelUserListLayout = new javax.swing.GroupLayout(jPanelUserList);
+        jPanelUserList.setLayout(jPanelUserListLayout);
+        jPanelUserListLayout.setHorizontalGroup(
+            jPanelUserListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelUserListLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelUserListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelUser12, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                    .addComponent(labelUser11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelUser10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelUser9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelUser8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelUser7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelUser6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelUser5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelUser4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelUser3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelUser2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelUser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelUserListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonUserAnswer1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonUserAnswer2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonUserAnswer3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonUserAnswer4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonUserAnswer5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonUserAnswer6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonUserAnswer7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonUserAnswer8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonUserAnswer9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonUserAnswer10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonUserAnswer11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonUserAnswer12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+        jPanelUserListLayout.setVerticalGroup(
+            jPanelUserListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelUserListLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jPanelUserListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelUser1)
+                    .addComponent(buttonUserAnswer1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelUserListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelUser2)
+                    .addComponent(buttonUserAnswer2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelUserListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelUser3)
+                    .addComponent(buttonUserAnswer3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelUserListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelUser4)
+                    .addComponent(buttonUserAnswer4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelUserListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelUser5)
+                    .addComponent(buttonUserAnswer5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelUserListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelUser6)
+                    .addComponent(buttonUserAnswer6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelUserListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelUser7)
+                    .addComponent(buttonUserAnswer7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelUserListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelUser8)
+                    .addComponent(buttonUserAnswer8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelUserListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelUser9)
+                    .addComponent(buttonUserAnswer9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelUserListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelUser10)
+                    .addComponent(buttonUserAnswer10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelUserListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelUser11)
+                    .addComponent(buttonUserAnswer11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelUserListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelUser12)
+                    .addComponent(buttonUserAnswer12))
+                .addContainerGap(42, Short.MAX_VALUE))
+        );
+
+        labelUser1.setText("Aucune reponse pour le moment");
+        buttonUserAnswer1.setVisible(false);
+        buttonUserAnswer2.setVisible(false);
+        labelUser2.setVisible(false);
+        buttonUserAnswer3.setVisible(false);
+        labelUser3.setVisible(false);
+        buttonUserAnswer4.setVisible(false);
+        labelUser4.setVisible(false);
+        buttonUserAnswer5.setVisible(false);
+        labelUser5.setVisible(false);
+        buttonUserAnswer6.setVisible(false);
+        labelUser6.setVisible(false);
+        buttonUserAnswer7.setVisible(false);
+        labelUser7.setVisible(false);
+        buttonUserAnswer8.setVisible(false);
+        labelUser8.setVisible(false);
+        buttonUserAnswer9.setVisible(false);
+        labelUser9.setVisible(false);
+        buttonUserAnswer10.setVisible(false);
+        labelUser10.setVisible(false);
+        buttonUserAnswer11.setVisible(false);
+        labelUser11.setVisible(false);
+        buttonUserAnswer12.setVisible(false);
+        labelUser12.setVisible(false);
+
+        jPanelAnswersMulti.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Répartition des réponses", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+
+        labelOverviewAnswer1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelOverviewAnswer1.setText("Answer1");
+
+        progressBarAns1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        labelOverviewAnswer2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelOverviewAnswer2.setText("Answer2");
+
+        progressBarAns2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        labelOverviewAnswer3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelOverviewAnswer3.setText("Answer3");
+
+        progressBarAns3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        labelOverviewAnswer4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelOverviewAnswer4.setText("Answer4");
+
+        progressBarAns4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        labelOverviewAnswer5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelOverviewAnswer5.setText("Answer5");
+
+        progressBarAns5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        labelOverviewAnswer6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelOverviewAnswer6.setText("Answer6");
+
+        progressBarAns6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        labelOverviewAnswer7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelOverviewAnswer7.setText("Answer7");
+
+        progressBarAns7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        labelOverviewAnswer8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelOverviewAnswer8.setText("Answer8");
+
+        progressBarAns8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        javax.swing.GroupLayout jPanelAnswersMultiLayout = new javax.swing.GroupLayout(jPanelAnswersMulti);
+        jPanelAnswersMulti.setLayout(jPanelAnswersMultiLayout);
+        jPanelAnswersMultiLayout.setHorizontalGroup(
+            jPanelAnswersMultiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAnswersMultiLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelAnswersMultiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelOverviewAnswer8, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+                    .addComponent(labelOverviewAnswer7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelOverviewAnswer6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelOverviewAnswer5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelOverviewAnswer4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelOverviewAnswer3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelOverviewAnswer1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelOverviewAnswer2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelAnswersMultiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(progressBarAns1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(progressBarAns2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(progressBarAns3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(progressBarAns4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(progressBarAns5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(progressBarAns6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(progressBarAns7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(progressBarAns8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        jPanelAnswersMultiLayout.setVerticalGroup(
+            jPanelAnswersMultiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAnswersMultiLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelAnswersMultiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelOverviewAnswer1)
+                    .addComponent(progressBarAns1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelAnswersMultiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelOverviewAnswer2)
+                    .addComponent(progressBarAns2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelAnswersMultiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelOverviewAnswer3)
+                    .addComponent(progressBarAns3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelAnswersMultiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelOverviewAnswer4)
+                    .addComponent(progressBarAns4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelAnswersMultiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelOverviewAnswer5)
+                    .addComponent(progressBarAns5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelAnswersMultiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelOverviewAnswer6)
+                    .addComponent(progressBarAns6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelAnswersMultiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelOverviewAnswer7)
+                    .addComponent(progressBarAns7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelAnswersMultiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelOverviewAnswer8)
+                    .addComponent(progressBarAns8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        labelOverviewAnswer1.setText("En attente de reponses");
+        progressBarAns1.setVisible(false);
+        labelOverviewAnswer2.setVisible(false);
+        progressBarAns2.setVisible(false);
+        labelOverviewAnswer3.setVisible(false);
+        progressBarAns3.setVisible(false);
+        labelOverviewAnswer4.setVisible(false);
+        progressBarAns4.setVisible(false);
+        labelOverviewAnswer5.setVisible(false);
+        progressBarAns5.setVisible(false);
+        labelOverviewAnswer6.setVisible(false);
+        progressBarAns6.setVisible(false);
+        labelOverviewAnswer7.setVisible(false);
+        progressBarAns7.setVisible(false);
+        labelOverviewAnswer8.setVisible(false);
+        progressBarAns8.setVisible(false);
+
+        jPanelOnAir.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dernière réponse", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+
+        javax.swing.GroupLayout jPanelOnAirLayout = new javax.swing.GroupLayout(jPanelOnAir);
+        jPanelOnAir.setLayout(jPanelOnAirLayout);
+        jPanelOnAirLayout.setHorizontalGroup(
+            jPanelOnAirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanelOnAirLayout.setVerticalGroup(
+            jPanelOnAirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        buttonNewQuestion.setText("Poser une nouvelle question");
+        buttonNewQuestion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonNewQuestionActionPerformed(evt);
+            }
+        });
+
+        jPanelAnswersOpen.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Répartition des réponses", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+
+        jScrollPane6.setViewportView(textPaneQuickViewAnswers);
+
+        javax.swing.GroupLayout jPanelAnswersOpenLayout = new javax.swing.GroupLayout(jPanelAnswersOpen);
+        jPanelAnswersOpen.setLayout(jPanelAnswersOpenLayout);
+        jPanelAnswersOpenLayout.setHorizontalGroup(
+            jPanelAnswersOpenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAnswersOpenLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6)
+                .addContainerGap())
+        );
+        jPanelAnswersOpenLayout.setVerticalGroup(
+            jPanelAnswersOpenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAnswersOpenLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout jPanelWaitAnswerLayout = new javax.swing.GroupLayout(jPanelWaitAnswer);
         jPanelWaitAnswer.setLayout(jPanelWaitAnswerLayout);
         jPanelWaitAnswerLayout.setHorizontalGroup(
             jPanelWaitAnswerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 775, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelWaitAnswerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelWaitAnswerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelWaitAnswerLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(buttonNewQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelWaitAnswerLayout.createSequentialGroup()
+                        .addGroup(jPanelWaitAnswerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanelQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanelAnswersMulti, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanelAnswersOpen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanelUserList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addComponent(jPanelOnAir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanelWaitAnswerLayout.setVerticalGroup(
             jPanelWaitAnswerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 560, Short.MAX_VALUE)
+            .addGroup(jPanelWaitAnswerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelWaitAnswerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelWaitAnswerLayout.createSequentialGroup()
+                        .addComponent(jPanelQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanelAnswersMulti, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanelAnswersOpen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanelUserList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanelOnAir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonNewQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.addTab("Réponses", jPanelWaitAnswer);
+        jPanelOnAir.setVisible(false);
+        jPanelAnswersOpen.setVisible(false);
+
+        jTabbedPane.addTab("Réponses", jPanelWaitAnswer);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -425,32 +1149,49 @@ public class ClientTeacherUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane2)
+                .addComponent(jTabbedPane)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane2)
-                .addContainerGap())
+                .addComponent(jTabbedPane))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void comboBoxQuestionTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxQuestionTypeActionPerformed
-        
+
         String index = (String)comboBoxQuestionType.getSelectedItem();
         System.out.println(comboBoxQuestionType.getSelectedItem());
         if (index.equals("<Choisir>") || index.equals("Ouverte")){
-            labelAnswer.setVisible(false);
             buttonAddAnswer.setVisible(false);
+
+            labelCustomAnswer1.setVisible(false);
+            labelCustomAnswer2.setVisible(false);
+            labelCustomAnswer3.setVisible(false);
+            labelCustomAnswer4.setVisible(false);
+            labelCustomAnswer5.setVisible(false);
+            labelCustomAnswer6.setVisible(false);
+            labelCustomAnswer7.setVisible(false);
+            labelCustomAnswer8.setVisible(false);
+            buttonDeleteAnswer1.setVisible(false);
+            buttonDeleteAnswer2.setVisible(false);
+            buttonDeleteAnswer3.setVisible(false);
+            buttonDeleteAnswer4.setVisible(false);
+            buttonDeleteAnswer5.setVisible(false);
+            buttonDeleteAnswer6.setVisible(false);
+            buttonDeleteAnswer7.setVisible(false);
+            buttonDeleteAnswer8.setVisible(false);
+
+            this.question.clearAnswers();
+
         }else{
-            labelAnswer.setVisible(true);
             buttonAddAnswer.setVisible(true);
         }
-        
+
         switch(index) {
         	case "Choix unique" :
         		this.question.setQuestionType("UNIQUE");
@@ -462,21 +1203,23 @@ public class ClientTeacherUI extends javax.swing.JFrame {
         		this.question.setQuestionType("OPEN");
         		break;
         }
-        
+
+
+
     }//GEN-LAST:event_comboBoxQuestionTypeActionPerformed
 
     private void buttonAddAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddAnswerActionPerformed
-        
+
         popupAnswer.setLocation(600, 300);
         popupAnswer.setVisible(true);
-        
+
 
     }//GEN-LAST:event_buttonAddAnswerActionPerformed
 
     private void buttonValidateAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonValidateAnswerActionPerformed
-        
+
     	this.question.addAnswer(textAreaPopup.getText());
-        
+
         switch(nbAnswer){
             case 0:
                 labelCustomAnswer1.setVisible(true);
@@ -528,11 +1271,11 @@ public class ClientTeacherUI extends javax.swing.JFrame {
             default:
                 break;
         }
-        
+
         textAreaPopup.setText("");
         nbAnswer +=1;
         popupAnswer.setVisible(false);
-        
+
     }//GEN-LAST:event_buttonValidateAnswerActionPerformed
 
     private void buttonCancelAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelAnswerActionPerformed
@@ -602,9 +1345,7 @@ public class ClientTeacherUI extends javax.swing.JFrame {
         nbAnswer-=1;
     }//GEN-LAST:event_buttonDeleteAnswer8ActionPerformed
 
-    private void buttonBackMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackMenuActionPerformed
-        //Window.setVisible(false);
-    }//GEN-LAST:event_buttonBackMenuActionPerformed
+
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
@@ -616,12 +1357,168 @@ public class ClientTeacherUI extends javax.swing.JFrame {
     private void buttonValidateFinalActionPerformed(java.awt.event.ActionEvent evt) {
     	System.out.println("VALIDATE");
     	IOCommandes monIOCommandes = new IOCommandes();
-    	
+
     	this.question.setLabel(textAreaQuestionText.getText());
     	System.out.println((String) this.question.getQuestions());
     	this.teacher.ecrireReseau((String) this.question.getQuestions());
+
+         textPaneQuestion.setText(textAreaQuestionText.getText());
+         jTabbedPane.setSelectedIndex(1);
+
     }
-    
+
+		private void buttonNewQuestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNewQuestionActionPerformed
+                    jTabbedPane.setSelectedIndex(0);
+                    comboBoxQuestionType.setSelectedIndex(0);
+                    this.question.clearAnswers();
+
+                    buttonAddAnswer.setVisible(false);
+
+                    labelCustomAnswer1.setVisible(false);
+                    labelCustomAnswer2.setVisible(false);
+                    labelCustomAnswer3.setVisible(false);
+                    labelCustomAnswer4.setVisible(false);
+                    labelCustomAnswer5.setVisible(false);
+                    labelCustomAnswer6.setVisible(false);
+                    labelCustomAnswer7.setVisible(false);
+                    labelCustomAnswer8.setVisible(false);
+                    buttonDeleteAnswer1.setVisible(false);
+                    buttonDeleteAnswer2.setVisible(false);
+                    buttonDeleteAnswer3.setVisible(false);
+                    buttonDeleteAnswer4.setVisible(false);
+                    buttonDeleteAnswer5.setVisible(false);
+                    buttonDeleteAnswer6.setVisible(false);
+                    buttonDeleteAnswer7.setVisible(false);
+                    buttonDeleteAnswer8.setVisible(false);
+
+                    textAreaQuestionText.setText("");
+
+    }//GEN-LAST:event_buttonNewQuestionActionPerformed
+
+    private void buttonUserAnswer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUserAnswer1ActionPerformed
+        
+        textPaneQuestionUserAnswer.setText(textPaneQuestion.getText());
+        jLabelUsername.setText(labelUser1.getText());
+        
+        jFrameUserAnswer.setLocation(600,300);
+        jFrameUserAnswer.setVisible(true);
+        
+    }//GEN-LAST:event_buttonUserAnswer1ActionPerformed
+
+    private void buttonUserAnswer2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUserAnswer2ActionPerformed
+        
+        textPaneQuestionUserAnswer.setText(textPaneQuestion.getText());
+        jLabelUsername.setText(labelUser2.getText());
+        
+        jFrameUserAnswer.setLocation(600,300);
+        jFrameUserAnswer.setVisible(true);
+        
+    }//GEN-LAST:event_buttonUserAnswer2ActionPerformed
+
+    private void buttonUserAnswer3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUserAnswer3ActionPerformed
+
+        textPaneQuestionUserAnswer.setText(textPaneQuestion.getText());
+        jLabelUsername.setText(labelUser3.getText());
+        
+        jFrameUserAnswer.setLocation(600,300);
+        jFrameUserAnswer.setVisible(true);
+        
+    }//GEN-LAST:event_buttonUserAnswer3ActionPerformed
+
+    private void buttonUserAnswer4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUserAnswer4ActionPerformed
+        
+        textPaneQuestionUserAnswer.setText(textPaneQuestion.getText());
+        jLabelUsername.setText(labelUser4.getText());
+        
+        jFrameUserAnswer.setLocation(600,300);
+        jFrameUserAnswer.setVisible(true);
+        
+    }//GEN-LAST:event_buttonUserAnswer4ActionPerformed
+
+    private void buttonUserAnswer5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUserAnswer5ActionPerformed
+        
+        textPaneQuestionUserAnswer.setText(textPaneQuestion.getText());
+        jLabelUsername.setText(labelUser5.getText());
+        
+        jFrameUserAnswer.setLocation(600,300);
+        jFrameUserAnswer.setVisible(true);
+        
+    }//GEN-LAST:event_buttonUserAnswer5ActionPerformed
+
+    private void buttonUserAnswer6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUserAnswer6ActionPerformed
+        
+        textPaneQuestionUserAnswer.setText(textPaneQuestion.getText());
+        jLabelUsername.setText(labelUser6.getText());
+        
+        jFrameUserAnswer.setLocation(600,300);
+        jFrameUserAnswer.setVisible(true);
+        
+    }//GEN-LAST:event_buttonUserAnswer6ActionPerformed
+
+    private void buttonUserAnswer7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUserAnswer7ActionPerformed
+        
+        textPaneQuestionUserAnswer.setText(textPaneQuestion.getText());
+        jLabelUsername.setText(labelUser7.getText());
+        
+        jFrameUserAnswer.setLocation(600,300);
+        jFrameUserAnswer.setVisible(true);
+        
+    }//GEN-LAST:event_buttonUserAnswer7ActionPerformed
+
+    private void buttonUserAnswer8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUserAnswer8ActionPerformed
+        
+        textPaneQuestionUserAnswer.setText(textPaneQuestion.getText());
+        jLabelUsername.setText(labelUser8.getText());
+        
+        jFrameUserAnswer.setLocation(600,300);
+        jFrameUserAnswer.setVisible(true);
+        
+    }//GEN-LAST:event_buttonUserAnswer8ActionPerformed
+
+    private void buttonUserAnswer9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUserAnswer9ActionPerformed
+        
+        textPaneQuestionUserAnswer.setText(textPaneQuestion.getText());
+        jLabelUsername.setText(labelUser9.getText());
+        
+        jFrameUserAnswer.setLocation(600,300);
+        jFrameUserAnswer.setVisible(true);
+        
+    }//GEN-LAST:event_buttonUserAnswer9ActionPerformed
+
+    private void buttonUserAnswer10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUserAnswer10ActionPerformed
+        
+        textPaneQuestionUserAnswer.setText(textPaneQuestion.getText());
+        jLabelUsername.setText(labelUser10.getText());
+        
+        jFrameUserAnswer.setLocation(600,300);
+        jFrameUserAnswer.setVisible(true);
+        
+    }//GEN-LAST:event_buttonUserAnswer10ActionPerformed
+
+    private void buttonUserAnswer11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUserAnswer11ActionPerformed
+        
+        textPaneQuestionUserAnswer.setText(textPaneQuestion.getText());
+        jLabelUsername.setText(labelUser11.getText());
+        
+        jFrameUserAnswer.setLocation(600,300);
+        jFrameUserAnswer.setVisible(true);
+        
+    }//GEN-LAST:event_buttonUserAnswer11ActionPerformed
+
+    private void buttonUserAnswer12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUserAnswer12ActionPerformed
+        
+        textPaneQuestionUserAnswer.setText(textPaneQuestion.getText());
+        jLabelUsername.setText(labelUser12.getText());
+        
+        jFrameUserAnswer.setLocation(600,300);
+        jFrameUserAnswer.setVisible(true);
+        
+    }//GEN-LAST:event_buttonUserAnswer12ActionPerformed
+
+    private void buttonOKUserAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOKUserAnswerActionPerformed
+        jFrameUserAnswer.setVisible(false);
+    }//GEN-LAST:event_buttonOKUserAnswerActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -629,7 +1526,7 @@ public class ClientTeacherUI extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -653,15 +1550,14 @@ public class ClientTeacherUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ClientTeacherUI().setVisible(true);
-                
-                
+
+
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAddAnswer;
-    private javax.swing.JButton buttonBackMenu;
     private javax.swing.JButton buttonCancelAnswer;
     private javax.swing.JButton buttonDeleteAnswer1;
     private javax.swing.JButton buttonDeleteAnswer2;
@@ -671,16 +1567,48 @@ public class ClientTeacherUI extends javax.swing.JFrame {
     private javax.swing.JButton buttonDeleteAnswer6;
     private javax.swing.JButton buttonDeleteAnswer7;
     private javax.swing.JButton buttonDeleteAnswer8;
+    private javax.swing.JButton buttonNewQuestion;
+    private javax.swing.JButton buttonOKUserAnswer;
+    private javax.swing.JButton buttonUserAnswer1;
+    private javax.swing.JButton buttonUserAnswer10;
+    private javax.swing.JButton buttonUserAnswer11;
+    private javax.swing.JButton buttonUserAnswer12;
+    private javax.swing.JButton buttonUserAnswer2;
+    private javax.swing.JButton buttonUserAnswer3;
+    private javax.swing.JButton buttonUserAnswer4;
+    private javax.swing.JButton buttonUserAnswer5;
+    private javax.swing.JButton buttonUserAnswer6;
+    private javax.swing.JButton buttonUserAnswer7;
+    private javax.swing.JButton buttonUserAnswer8;
+    private javax.swing.JButton buttonUserAnswer9;
     private javax.swing.JButton buttonValidateAnswer;
     private javax.swing.JButton buttonValidateFinal;
     private javax.swing.JComboBox<String> comboBoxQuestionType;
+    private javax.swing.JFrame jFrameUserAnswer;
+    private javax.swing.JLabel jLabelUsername;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanelAnswersChoice;
+    private javax.swing.JPanel jPanelAnswersMulti;
+    private javax.swing.JPanel jPanelAnswersOpen;
     private javax.swing.JPanel jPanelMain;
+    private javax.swing.JPanel jPanelOnAir;
     private javax.swing.JPanel jPanelPopup1;
+    private javax.swing.JPanel jPanelQuestion;
+    private javax.swing.JPanel jPanelQuestionText;
+    private javax.swing.JPanel jPanelQuestionType;
+    private javax.swing.JPanel jPanelUserAnswer;
+    private javax.swing.JPanel jPanelUserList;
+    private javax.swing.JPanel jPanelUserQuestion;
+    private javax.swing.JPanel jPanelUsername;
     private javax.swing.JPanel jPanelWaitAnswer;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JLabel labelAnswer;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JTabbedPane jTabbedPane;
+    private javax.swing.JTextPane jTextPane2;
     private javax.swing.JLabel labelCustomAnswer1;
     private javax.swing.JLabel labelCustomAnswer2;
     private javax.swing.JLabel labelCustomAnswer3;
@@ -689,11 +1617,48 @@ public class ClientTeacherUI extends javax.swing.JFrame {
     private javax.swing.JLabel labelCustomAnswer6;
     private javax.swing.JLabel labelCustomAnswer7;
     private javax.swing.JLabel labelCustomAnswer8;
+    private javax.swing.JLabel labelOverviewAnswer1;
+    private javax.swing.JLabel labelOverviewAnswer2;
+    private javax.swing.JLabel labelOverviewAnswer3;
+    private javax.swing.JLabel labelOverviewAnswer4;
+    private javax.swing.JLabel labelOverviewAnswer5;
+    private javax.swing.JLabel labelOverviewAnswer6;
+    private javax.swing.JLabel labelOverviewAnswer7;
+    private javax.swing.JLabel labelOverviewAnswer8;
     private javax.swing.JLabel labelPopup;
-    private javax.swing.JLabel labelQuestionText;
-    private javax.swing.JLabel labelQuestionType;
+    private javax.swing.JLabel labelUser1;
+    private javax.swing.JLabel labelUser10;
+    private javax.swing.JLabel labelUser11;
+    private javax.swing.JLabel labelUser12;
+    private javax.swing.JLabel labelUser2;
+    private javax.swing.JLabel labelUser3;
+    private javax.swing.JLabel labelUser4;
+    private javax.swing.JLabel labelUser5;
+    private javax.swing.JLabel labelUser6;
+    private javax.swing.JLabel labelUser7;
+    private javax.swing.JLabel labelUser8;
+    private javax.swing.JLabel labelUser9;
+    private javax.swing.JLabel labelUserAnswer1;
+    private javax.swing.JLabel labelUserAnswer2;
+    private javax.swing.JLabel labelUserAnswer3;
+    private javax.swing.JLabel labelUserAnswer4;
+    private javax.swing.JLabel labelUserAnswer5;
+    private javax.swing.JLabel labelUserAnswer6;
+    private javax.swing.JLabel labelUserAnswer7;
+    private javax.swing.JLabel labelUserAnswer8;
     private javax.swing.JFrame popupAnswer;
+    private javax.swing.JProgressBar progressBarAns1;
+    private javax.swing.JProgressBar progressBarAns2;
+    private javax.swing.JProgressBar progressBarAns3;
+    private javax.swing.JProgressBar progressBarAns4;
+    private javax.swing.JProgressBar progressBarAns5;
+    private javax.swing.JProgressBar progressBarAns6;
+    private javax.swing.JProgressBar progressBarAns7;
+    private javax.swing.JProgressBar progressBarAns8;
     private javax.swing.JTextArea textAreaPopup;
     private javax.swing.JTextArea textAreaQuestionText;
+    private javax.swing.JTextPane textPaneQuestion;
+    private javax.swing.JTextPane textPaneQuestionUserAnswer;
+    private javax.swing.JTextPane textPaneQuickViewAnswers;
     // End of variables declaration//GEN-END:variables
 }
