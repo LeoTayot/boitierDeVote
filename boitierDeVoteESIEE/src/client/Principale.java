@@ -77,7 +77,7 @@ public class Principale {
 					// TESTER LE JSON
 					Questionnaire question = new Questionnaire(username);
 					question.setQuestionType("UNIQUE");
-					question.setLabel("Combien font les �hiffres 1 + 3 ?");
+					question.setLabel("Combien font les chiffres 1 + 3 ?");
 					question.addAnswer("4");
 					question.addAnswer("5");
 					question.addAnswer("6");
