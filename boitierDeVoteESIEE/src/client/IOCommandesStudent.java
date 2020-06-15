@@ -13,13 +13,17 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class IOCommandesStudent extends Thread {
+import graphics.ClientStudentUI;
 
-	private String currentQuestion;
-	private String currentQuestionType;
-	private String currentTeacher;
-	private String currentLabel;
-	private JSONArray possibleAnswer;
+public class IOCommandesStudent extends Thread {
+	private String username;
+
+	private JSONArray questions = new JSONArray();
+	public String currentQuestion;
+	public String currentQuestionType;
+	public String currentTeacher;
+	public String currentLabel;
+	public JSONArray possibleAnswer;
 
 	private BufferedReader lectureEcran;
 	private BufferedReader lectureReseau;
@@ -28,10 +32,14 @@ public class IOCommandesStudent extends Thread {
 	private PrintStream ecritureReseau;
 	
 	private Socket maChaussette;
-	//private WindowChat laFenetre;
+	private ClientStudentUI studentUI;
 
 	public Socket getMaChaussette() {
 		return maChaussette;
+	}
+	
+	public void setUI(ClientStudentUI ui) {
+		studentUI = ui;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -44,37 +52,24 @@ public class IOCommandesStudent extends Thread {
 			message = this.lireReseau();
 			ecrireEcran(message);
 			
+			if(message == null || message.contentEquals("EXIT")) {
+				continue;
+			}
+			
 			String firstChar = message.substring(0, 1);
 			if(!firstChar.equals("{")) {
 				continue;
 			}
-			// Parse JSON
-			JSONParser parser = new JSONParser();
-			JSONObject jsonObject = null;
-			Object jsonObj = null;
-	
-			try {
-				jsonObj = parser.parse(message);
-				jsonObject = (JSONObject) jsonObj;
-				currentQuestion = (String) jsonObject.get("questionId");
-				System.out.println("Current question asked : " + currentQuestion);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
 			
-			this.currentQuestionType = (String) jsonObject.get("questionType");
-			this.currentTeacher = (String) jsonObject.get("teacher");
-			this.currentLabel = (String) jsonObject.get("label");
-			this.possibleAnswer = (JSONArray) jsonObject.get("possibleAnswer");
-
-			System.out.println("NOUVELLE QUESTION RECUE");
-			System.out.println("Teacher = " + currentTeacher);
-			System.out.println("QuestionType = " + currentQuestionType);
-			System.out.println("Label = " + currentLabel);
-			
-			Iterator<String> answer = possibleAnswer.iterator();
-			while (answer.hasNext()) {
-				System.out.println("Answer = " + answer.next());
+			// Set VALUE IN GUI		
+			addNewQuestion(message);
+			if(questions.size() > 1) {
+				sendNotification();
+				// update nb question en attente 
+				continue;
+			} else {
+				setCurrentQuestion();
+				refreshUI();
 			}
 		}
 	}
@@ -90,8 +85,9 @@ public class IOCommandesStudent extends Thread {
 
 	}
 
-	public IOCommandesStudent(Socket uneChaussette) {
-
+	public IOCommandesStudent(Socket uneChaussette, String username) {
+		this.username = username;
+		
 		// Partie en local
 		InputStreamReader monInputStream = new InputStreamReader(System.in);
 		lectureEcran = new BufferedReader(monInputStream);
@@ -116,7 +112,136 @@ public class IOCommandesStudent extends Thread {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void sendNotification() {
+		System.out.println("NEW QUESTION AVAILABLE");
+	}
+	
+	public void addNewQuestion(String message) {
+		JSONParser parser = new JSONParser();
+		JSONObject jsonObject = null;
+		Object jsonObj = null;
+		try {
+			jsonObj = parser.parse(message);
+			jsonObject = (JSONObject) jsonObj;
 
+			questions.add(jsonObject);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void setCurrentQuestion() {
+		JSONObject jsonObject = (JSONObject) questions.get(0);
+		currentQuestion = (String) jsonObject.get("questionId");
+		System.out.println("Current question asked : " + currentQuestion);
+		
+		this.currentQuestionType = (String) jsonObject.get("questionType");
+		this.currentTeacher = (String) jsonObject.get("teacher");
+		this.currentLabel = (String) jsonObject.get("label");
+		this.possibleAnswer = (JSONArray) jsonObject.get("possibleAnswer");
+	}
+	
+	public void refreshUI() {
+		this.studentUI.jTextPaneQuestion.setText(currentLabel);
+		
+		switch(currentQuestionType) {
+			case "MULTIPLE" :
+				clearAvailableAnswerInGui();
+				this.studentUI.jLabelTypeQuestion.setText("Plusieurs réponses sont possibles");
+				this.studentUI.typeQuestion(currentQuestionType);
+				
+				switch(this.possibleAnswer.size()) {
+					case 8 :
+						this.studentUI.checkBoxAnswer8.setText((String) this.possibleAnswer.get(7));
+						this.studentUI.checkBoxAnswer8.setVisible(true);
+					case 7 :
+						this.studentUI.checkBoxAnswer7.setText((String) this.possibleAnswer.get(6));
+						this.studentUI.checkBoxAnswer7.setVisible(true);
+					case 6 :
+						this.studentUI.checkBoxAnswer6.setText((String) this.possibleAnswer.get(5));
+						this.studentUI.checkBoxAnswer6.setVisible(true);
+					case 5 :
+						this.studentUI.checkBoxAnswer5.setText((String) this.possibleAnswer.get(4));
+						this.studentUI.checkBoxAnswer5.setVisible(true);
+					case 4 :
+						this.studentUI.checkBoxAnswer4.setText((String) this.possibleAnswer.get(3));
+						this.studentUI.checkBoxAnswer4.setVisible(true);
+					case 3 :
+						this.studentUI.checkBoxAnswer3.setText((String) this.possibleAnswer.get(2));
+						this.studentUI.checkBoxAnswer3.setVisible(true);
+					case 2 :
+						this.studentUI.checkBoxAnswer2.setText((String) this.possibleAnswer.get(1));
+						this.studentUI.checkBoxAnswer2.setVisible(true);
+					case 1 :
+						this.studentUI.checkBoxAnswer1.setText((String) this.possibleAnswer.get(0));
+						this.studentUI.checkBoxAnswer1.setVisible(true);
+						break;
+				}
+				
+				break;
+			case "UNIQUE" :
+				clearAvailableAnswerInGui();
+				this.studentUI.jLabelTypeQuestion.setText("Une seule réponse n'est admise");
+				this.studentUI.typeQuestion(currentQuestionType);
+				
+				switch(this.possibleAnswer.size()) {
+					case 8 :
+						this.studentUI.radioAnswer8.setText((String) this.possibleAnswer.get(7));
+						this.studentUI.radioAnswer8.setVisible(true);
+					case 7 :
+						this.studentUI.radioAnswer7.setText((String) this.possibleAnswer.get(6));
+						this.studentUI.radioAnswer7.setVisible(true);
+					case 6 :
+						this.studentUI.radioAnswer6.setText((String) this.possibleAnswer.get(5));
+						this.studentUI.radioAnswer6.setVisible(true);
+					case 5 :
+						this.studentUI.radioAnswer5.setText((String) this.possibleAnswer.get(4));
+						this.studentUI.radioAnswer5.setVisible(true);
+					case 4 :
+						this.studentUI.radioAnswer4.setText((String) this.possibleAnswer.get(3));
+						this.studentUI.radioAnswer4.setVisible(true);
+					case 3 :
+						this.studentUI.radioAnswer3.setText((String) this.possibleAnswer.get(2));
+						this.studentUI.radioAnswer3.setVisible(true);
+					case 2 :
+						this.studentUI.radioAnswer2.setText((String) this.possibleAnswer.get(1));
+						this.studentUI.radioAnswer2.setVisible(true);
+					case 1 :
+						this.studentUI.radioAnwser1.setText((String) this.possibleAnswer.get(0));
+						this.studentUI.radioAnwser1.setVisible(true);
+						break;
+				}
+				
+				break;
+			case "OPEN" :
+				this.studentUI.jLabelTypeQuestion.setText("Question ouverte");
+				this.studentUI.typeQuestion(currentQuestionType);
+				break;
+		}
+		
+		this.studentUI.repaint();
+	}
+	
+	public void clearAvailableAnswerInGui() {
+		this.studentUI.radioAnwser1.setVisible(false);
+		this.studentUI.radioAnswer2.setVisible(false);
+		this.studentUI.radioAnswer3.setVisible(false);
+		this.studentUI.radioAnswer4.setVisible(false);
+		this.studentUI.radioAnswer5.setVisible(false);
+		this.studentUI.radioAnswer6.setVisible(false);
+		this.studentUI.radioAnswer7.setVisible(false);
+		this.studentUI.radioAnswer8.setVisible(false);
+		
+		this.studentUI.checkBoxAnswer1.setVisible(false);
+		this.studentUI.checkBoxAnswer2.setVisible(false);
+		this.studentUI.checkBoxAnswer3.setVisible(false);
+		this.studentUI.checkBoxAnswer4.setVisible(false);
+		this.studentUI.checkBoxAnswer5.setVisible(false);
+		this.studentUI.checkBoxAnswer6.setVisible(false);
+		this.studentUI.checkBoxAnswer7.setVisible(false);
+		this.studentUI.checkBoxAnswer8.setVisible(false);
 	}
 
 	public PrintStream getEcritureUser() {
@@ -155,6 +280,8 @@ public class IOCommandesStudent extends Thread {
 	public void sendAnswer(String answer) {		
 		JSONObject formatedAnswer = new JSONObject();
 		formatedAnswer.put("questionId", this.currentQuestion);
+		formatedAnswer.put("questionType", this.currentQuestionType);
+		formatedAnswer.put("studentName", this.username);
 		
 		switch(currentQuestionType) {
 			case "OPEN" :
@@ -172,6 +299,16 @@ public class IOCommandesStudent extends Thread {
 		
 		System.out.println(formatedAnswer.toJSONString());
 		this.ecrireReseau(formatedAnswer.toJSONString());
+		
+		questions.remove(0);
+		if(questions.size() > 0) {
+			// update nb question en attente 
+			setCurrentQuestion();
+			refreshUI();
+		} else {
+			// Afficher ecran d'attente ici
+			System.out.println("ATTENTE D'UNE NOUVELLE QUESTION");
+		}
 	}
 
 	public String lireReseau() {

@@ -147,33 +147,28 @@ public class boitierDeVoteUI extends JFrame {
 
     private void studentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentButtonActionPerformed
     	this.setVisible(false);
-    	String username = textFieldUsername.getText();
-    	String role = "S";
-    	
-    	JOptionPane.showMessageDialog(null, "Bouton Student");
+    	connectToServer("S", textFieldUsername.getText());
     }//GEN-LAST:event_studentButtonActionPerformed
 
     private void teacherButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teacherButtonActionPerformed
     	this.setVisible(false);
-    	String username = textFieldUsername.getText();
-    	String role = "T";
-    	    	
+    	connectToServer("T", textFieldUsername.getText());
+    }//GEN-LAST:event_teacherButtonActionPerformed
+
+    // role = S (student) or T (teacher)
+    private void connectToServer(String role, String username) {    	    	
     	Socket chaussette = null;
-		IOCommandesTeacher teacher = null;
 
 		try {
 			chaussette = new Socket("127.0.0.1", 4502);
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		IOCommandes monIOCommandes = null;
 		
 		int available = PrincipaleServeur.checkPlaceLibre(PrincipaleServeur.maxUsers, PrincipaleServeur.mesThreads);
-//		System.out.println("Place available :" + available);
 		if (available == -1) {
 			monIOCommandes = new IOCommandes();
 			monIOCommandes.ecrireEcran("Il n'y a plus de place sur le serveur, veuillez réessayer ultérieurement.");
@@ -182,28 +177,34 @@ public class boitierDeVoteUI extends JFrame {
 		}
 		
 		String repServ = "";
-		
 		monIOCommandes.ecrireReseau(username);
 		repServ = monIOCommandes.lireReseau();
-		monIOCommandes.ecrireReseau("T");
+		monIOCommandes.ecrireReseau(role);
 		repServ = monIOCommandes.lireReseau();
-		String userType = "TEACHER";
+		String userType = "";
 		
 		switch(repServ) {
 			case "TEACHER" :
 				userType = "TEACHER";
 				System.out.println("TEACHER CONNECTED");
+				IOCommandesTeacher teacher = null;
 				teacher = new IOCommandesTeacher(chaussette);
 				teacher.start();
+		    	new ClientTeacherUI(username, teacher).setVisible(true);
 				break;
+			case "STUDENT" :
+				userType = "STUDENT";
+				System.out.println("STUDENT CONNECTED");
+				IOCommandesStudent student = null;
+				student = new IOCommandesStudent(chaussette, username);
+				student.start();
+		    	new ClientStudentUI(username, student).setVisible(true);
 			default :
 				// Error
 				break;
 		}
-    	
-    	new ClientTeacherUI(username, teacher).setVisible(true);
-    }//GEN-LAST:event_teacherButtonActionPerformed
-
+    }
+    
     private void textFieldUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldUsernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldUsernameActionPerformed
