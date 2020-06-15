@@ -224,6 +224,7 @@ public class ClientTeacherUI extends javax.swing.JFrame {
         );
 
         jFrameUserAnswer.setTitle("User Answer");
+        jFrameUserAnswer.setPreferredSize(new java.awt.Dimension(600, 480));
         jFrameUserAnswer.setResizable(false);
 
         jPanelUsername.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "User", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N

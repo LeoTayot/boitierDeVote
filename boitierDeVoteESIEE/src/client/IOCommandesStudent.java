@@ -14,6 +14,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import graphics.ClientStudentUI;
+import java.awt.Color;
+import static java.awt.Color.*;
 
 public class IOCommandesStudent extends Thread {
 	private String username;
@@ -116,6 +118,10 @@ public class IOCommandesStudent extends Thread {
 	
 	public void sendNotification() {
 		System.out.println("NEW QUESTION AVAILABLE");
+                this.studentUI.labelNotif.setText("New question available !");
+                Color cyan = new Color(51,204,255);
+
+                this.studentUI.jPanelNotif.setBackground(cyan);
 	}
 	
 	public void addNewQuestion(String message) {
@@ -145,12 +151,18 @@ public class IOCommandesStudent extends Thread {
 	
 	public void refreshUI() {
 		this.studentUI.jTextPaneQuestion.setText(currentLabel);
+                this.studentUI.jLabelTypeQuestion.setVisible(true);
+                this.studentUI.buttonSendAnswer.setVisible(true);
+                this.studentUI.labelNotif.setText("");
 		
 		switch(currentQuestionType) {
 			case "MULTIPLE" :
 				clearAvailableAnswerInGui();
 				this.studentUI.jLabelTypeQuestion.setText("Plusieurs reponses sont possibles");
 				this.studentUI.typeQuestion(currentQuestionType);
+                                Color base = new Color(240,240,240);
+                                this.studentUI.jPanelNotif.setBackground(base);
+                                this.studentUI.labelNotif.setText("");
 				
 				switch(this.possibleAnswer.size()) {
 					case 8 :
