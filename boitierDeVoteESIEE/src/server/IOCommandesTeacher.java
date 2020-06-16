@@ -120,6 +120,7 @@ public class IOCommandesTeacher extends Thread {
 		}
 		JSONObject jsonObject = (JSONObject) jsonObj;
 		String questionId = (String) jsonObject.get("questionId");
+		jsonObject.put("type", "question");
 
 		String currentRole = "";
 		for(Object user : PrincipaleServeur.users) {
@@ -132,9 +133,14 @@ public class IOCommandesTeacher extends Thread {
 		System.out.println("After question : ");
 		System.out.println(PrincipaleServeur.users.toJSONString());
 		
+		PrincipaleServeur.infos.put("lastQuestion", questionId);
+		PrincipaleServeur.infos.put("possibleAnswer", jsonObject.get("possibleAnswer"));
+		PrincipaleServeur.infos.put("questionType", jsonObject.get("questionType"));
+		PrincipaleServeur.infos.put("labelQuestion", jsonObject.get("label"));
+		
 		for (int i = 0; i < PrincipaleServeur.maxUsers; i++) {
 			PrintStream tmp = null;
-			if(PrincipaleServeur.mesThreads[i] == null) {
+			if(PrincipaleServeur.mesThreads[i] == null || PrincipaleServeur.lesChaussettes[i] == null) {
 				continue;
 			}
 			
@@ -145,7 +151,7 @@ public class IOCommandesTeacher extends Thread {
 					&& tmpUserClass.equals("server.IOCommandesStudent")) {
 					retcode = true;
 					tmp = new PrintStream(PrincipaleServeur.lesChaussettes[i].getOutputStream());
-					tmp.println(message);
+					tmp.println(jsonObject.toString());
 				}
 
 			} catch (IOException e) {

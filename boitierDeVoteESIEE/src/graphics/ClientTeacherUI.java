@@ -5,6 +5,14 @@
  */
 package graphics;
 
+import java.util.Iterator;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import client.AnswerData;
 import client.IOCommandes;
 import client.IOCommandesTeacher;
 import client.Questionnaire;
@@ -16,6 +24,7 @@ import client.Questionnaire;
 public class ClientTeacherUI extends javax.swing.JFrame {
 	private Questionnaire question;
 	private IOCommandesTeacher teacher;
+	private AnswerData answerData;
 
     /**
      * Creates new form ClientTeacherUI
@@ -28,6 +37,8 @@ public class ClientTeacherUI extends javax.swing.JFrame {
         initComponents();
         this.question = new Questionnaire(username);
         this.teacher = teacher;
+        this.answerData = new AnswerData(teacher.getMaChaussette(), this);
+        this.answerData.start();
     }
 
     private int nbAnswer = 0;
@@ -66,6 +77,7 @@ public class ClientTeacherUI extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTextPane2 = new javax.swing.JTextPane();
+        jTextPane2.setEditable(false);
         buttonOKUserAnswer = new javax.swing.JButton();
         jTabbedPane = new javax.swing.JTabbedPane();
         jPanelMain = new javax.swing.JPanel();
@@ -144,6 +156,7 @@ public class ClientTeacherUI extends javax.swing.JFrame {
         jPanelAnswersOpen = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         textPaneQuickViewAnswers = new javax.swing.JTextPane();
+        textPaneQuickViewAnswers.setEditable(false);
 
         popupAnswer.setTitle("Ajouter une rÃ©ponse");
         popupAnswer.setResizable(false);
@@ -223,8 +236,9 @@ public class ClientTeacherUI extends javax.swing.JFrame {
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
+        jFrameUserAnswer.setPreferredSize(new java.awt.Dimension(600, 480));
         jFrameUserAnswer.setTitle("User Answer");
-        jFrameUserAnswer.setResizable(false);
+        jFrameUserAnswer.setResizable(true);
 
         jPanelUsername.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "User", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         jPanelUsername.setToolTipText("");
@@ -912,7 +926,7 @@ public class ClientTeacherUI extends javax.swing.JFrame {
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
-        labelUser1.setText("Aucune reponse pour le moment");
+        labelUser1.setText("Aucun etudiant pour le moment");
         buttonUserAnswer1.setVisible(false);
         buttonUserAnswer2.setVisible(false);
         labelUser2.setVisible(false);
@@ -1395,10 +1409,88 @@ public class ClientTeacherUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_buttonNewQuestionActionPerformed
 
+	private void setUserSpecificAnswer() {
+		JSONObject student = (JSONObject) this.answerData.students.get(0);
+		String currentQuestionType = (String) this.answerData.currentQuestionType;
+		textPaneQuestionUserAnswer.setText(this.answerData.currentQuestionLabel);
+		
+		jPanel1.setVisible(false);
+		jPanelUserAnswer.setVisible(false);
+		switch(currentQuestionType) {
+			case "OPEN" :
+				jPanel1.setVisible(true);
+				jTextPane2.setText((String) student.get("answer"));
+				break;
+			case "UNIQUE" :
+				jPanelUserAnswer.setVisible(true);
+				labelUserAnswer1.setText((String) this.answerData.currentAnswers.get(Integer.parseInt((String) student.get("answer"))));
+				labelUserAnswer1.setVisible(true);
+				break;
+			case "MULTIPLE" :
+				jPanelUserAnswer.setVisible(true);
+				JSONArray answer = null;
+				JSONParser parser = new JSONParser();
+				System.out.println(student.toJSONString());
+				try {
+					answer = (JSONArray)parser.parse((String) student.get("answer"));
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				if(answer == null || answer.size() == 0) {
+					labelUserAnswer1.setText("Aucune réponse");
+					labelUserAnswer1.setVisible(true);
+					return;
+				}
+				
+				Iterator it = answer.iterator();
+		        if(it.hasNext()) {
+		        	String uniqueAnswer = (String) it.next();
+					labelUserAnswer1.setText((String) this.answerData.currentAnswers.get(Integer.parseInt(uniqueAnswer)));
+					labelUserAnswer1.setVisible(true);
+		        }
+		        if(it.hasNext()) {
+		        	String uniqueAnswer = (String) it.next();
+					labelUserAnswer2.setText((String) this.answerData.currentAnswers.get(Integer.parseInt(uniqueAnswer)));
+					labelUserAnswer2.setVisible(true);
+		        }
+		        if(it.hasNext()) {
+		        	String uniqueAnswer = (String) it.next();
+					labelUserAnswer3.setText((String) this.answerData.currentAnswers.get(Integer.parseInt(uniqueAnswer)));
+					labelUserAnswer3.setVisible(true);
+		        }
+		        if(it.hasNext()) {
+		        	String uniqueAnswer = (String) it.next();
+					labelUserAnswer4.setText((String) this.answerData.currentAnswers.get(Integer.parseInt(uniqueAnswer)));
+					labelUserAnswer4.setVisible(true);
+		        }
+		        if(it.hasNext()) {
+		        	String uniqueAnswer = (String) it.next();
+					labelUserAnswer5.setText((String) this.answerData.currentAnswers.get(Integer.parseInt(uniqueAnswer)));
+					labelUserAnswer5.setVisible(true);
+		        }
+		        if(it.hasNext()) {
+		        	String uniqueAnswer = (String) it.next();
+					labelUserAnswer6.setText((String) this.answerData.currentAnswers.get(Integer.parseInt(uniqueAnswer)));
+					labelUserAnswer6.setVisible(true);
+		        }
+		        if(it.hasNext()) {
+		        	String uniqueAnswer = (String) it.next();
+					labelUserAnswer7.setText((String) this.answerData.currentAnswers.get(Integer.parseInt(uniqueAnswer)));
+					labelUserAnswer7.setVisible(true);
+		        }
+		        if(it.hasNext()) {
+		        	String uniqueAnswer = (String) it.next();
+					labelUserAnswer8.setText((String) this.answerData.currentAnswers.get(Integer.parseInt(uniqueAnswer)));
+					labelUserAnswer8.setVisible(true);
+		        }
+				break;
+		}
+	}
+	
     private void buttonUserAnswer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUserAnswer1ActionPerformed
-        
-        textPaneQuestionUserAnswer.setText(textPaneQuestion.getText());
+    	
         jLabelUsername.setText(labelUser1.getText());
+        setUserSpecificAnswer();
         
         jFrameUserAnswer.setLocation(600,300);
         jFrameUserAnswer.setVisible(true);
@@ -1563,108 +1655,108 @@ public class ClientTeacherUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonAddAnswer;
-    private javax.swing.JButton buttonCancelAnswer;
-    private javax.swing.JButton buttonDeleteAnswer1;
-    private javax.swing.JButton buttonDeleteAnswer2;
-    private javax.swing.JButton buttonDeleteAnswer3;
-    private javax.swing.JButton buttonDeleteAnswer4;
-    private javax.swing.JButton buttonDeleteAnswer5;
-    private javax.swing.JButton buttonDeleteAnswer6;
-    private javax.swing.JButton buttonDeleteAnswer7;
-    private javax.swing.JButton buttonDeleteAnswer8;
-    private javax.swing.JButton buttonNewQuestion;
-    private javax.swing.JButton buttonOKUserAnswer;
-    private javax.swing.JButton buttonUserAnswer1;
-    private javax.swing.JButton buttonUserAnswer10;
-    private javax.swing.JButton buttonUserAnswer11;
-    private javax.swing.JButton buttonUserAnswer12;
-    private javax.swing.JButton buttonUserAnswer2;
-    private javax.swing.JButton buttonUserAnswer3;
-    private javax.swing.JButton buttonUserAnswer4;
-    private javax.swing.JButton buttonUserAnswer5;
-    private javax.swing.JButton buttonUserAnswer6;
-    private javax.swing.JButton buttonUserAnswer7;
-    private javax.swing.JButton buttonUserAnswer8;
-    private javax.swing.JButton buttonUserAnswer9;
-    private javax.swing.JButton buttonValidateAnswer;
-    private javax.swing.JButton buttonValidateFinal;
-    private javax.swing.JComboBox<String> comboBoxQuestionType;
-    private javax.swing.JFrame jFrameUserAnswer;
-    private javax.swing.JLabel jLabelUsername;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanelAnswersChoice;
-    private javax.swing.JPanel jPanelAnswersMulti;
-    private javax.swing.JPanel jPanelAnswersOpen;
-    private javax.swing.JPanel jPanelMain;
-    private javax.swing.JPanel jPanelOnAir;
-    private javax.swing.JPanel jPanelPopup1;
-    private javax.swing.JPanel jPanelQuestion;
-    private javax.swing.JPanel jPanelQuestionText;
-    private javax.swing.JPanel jPanelQuestionType;
-    private javax.swing.JPanel jPanelUserAnswer;
-    private javax.swing.JPanel jPanelUserList;
-    private javax.swing.JPanel jPanelUserQuestion;
-    private javax.swing.JPanel jPanelUsername;
-    private javax.swing.JPanel jPanelWaitAnswer;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTabbedPane jTabbedPane;
-    private javax.swing.JTextPane jTextPane2;
-    private javax.swing.JLabel labelCustomAnswer1;
-    private javax.swing.JLabel labelCustomAnswer2;
-    private javax.swing.JLabel labelCustomAnswer3;
-    private javax.swing.JLabel labelCustomAnswer4;
-    private javax.swing.JLabel labelCustomAnswer5;
-    private javax.swing.JLabel labelCustomAnswer6;
-    private javax.swing.JLabel labelCustomAnswer7;
-    private javax.swing.JLabel labelCustomAnswer8;
-    private javax.swing.JLabel labelOverviewAnswer1;
-    private javax.swing.JLabel labelOverviewAnswer2;
-    private javax.swing.JLabel labelOverviewAnswer3;
-    private javax.swing.JLabel labelOverviewAnswer4;
-    private javax.swing.JLabel labelOverviewAnswer5;
-    private javax.swing.JLabel labelOverviewAnswer6;
-    private javax.swing.JLabel labelOverviewAnswer7;
-    private javax.swing.JLabel labelOverviewAnswer8;
-    private javax.swing.JLabel labelPopup;
-    private javax.swing.JLabel labelUser1;
-    private javax.swing.JLabel labelUser10;
-    private javax.swing.JLabel labelUser11;
-    private javax.swing.JLabel labelUser12;
-    private javax.swing.JLabel labelUser2;
-    private javax.swing.JLabel labelUser3;
-    private javax.swing.JLabel labelUser4;
-    private javax.swing.JLabel labelUser5;
-    private javax.swing.JLabel labelUser6;
-    private javax.swing.JLabel labelUser7;
-    private javax.swing.JLabel labelUser8;
-    private javax.swing.JLabel labelUser9;
-    private javax.swing.JLabel labelUserAnswer1;
-    private javax.swing.JLabel labelUserAnswer2;
-    private javax.swing.JLabel labelUserAnswer3;
-    private javax.swing.JLabel labelUserAnswer4;
-    private javax.swing.JLabel labelUserAnswer5;
-    private javax.swing.JLabel labelUserAnswer6;
-    private javax.swing.JLabel labelUserAnswer7;
-    private javax.swing.JLabel labelUserAnswer8;
-    private javax.swing.JFrame popupAnswer;
-    private javax.swing.JProgressBar progressBarAns1;
-    private javax.swing.JProgressBar progressBarAns2;
-    private javax.swing.JProgressBar progressBarAns3;
-    private javax.swing.JProgressBar progressBarAns4;
-    private javax.swing.JProgressBar progressBarAns5;
-    private javax.swing.JProgressBar progressBarAns6;
-    private javax.swing.JProgressBar progressBarAns7;
-    private javax.swing.JProgressBar progressBarAns8;
-    private javax.swing.JTextArea textAreaPopup;
-    private javax.swing.JTextArea textAreaQuestionText;
-    private javax.swing.JTextPane textPaneQuestion;
-    private javax.swing.JTextPane textPaneQuestionUserAnswer;
-    private javax.swing.JTextPane textPaneQuickViewAnswers;
+    public javax.swing.JButton buttonAddAnswer;
+    public javax.swing.JButton buttonCancelAnswer;
+    public javax.swing.JButton buttonDeleteAnswer1;
+    public javax.swing.JButton buttonDeleteAnswer2;
+    public javax.swing.JButton buttonDeleteAnswer3;
+    public javax.swing.JButton buttonDeleteAnswer4;
+    public javax.swing.JButton buttonDeleteAnswer5;
+    public javax.swing.JButton buttonDeleteAnswer6;
+    public javax.swing.JButton buttonDeleteAnswer7;
+    public javax.swing.JButton buttonDeleteAnswer8;
+    public javax.swing.JButton buttonNewQuestion;
+    public javax.swing.JButton buttonOKUserAnswer;
+    public javax.swing.JButton buttonUserAnswer1;
+    public javax.swing.JButton buttonUserAnswer10;
+    public javax.swing.JButton buttonUserAnswer11;
+    public javax.swing.JButton buttonUserAnswer12;
+    public javax.swing.JButton buttonUserAnswer2;
+    public javax.swing.JButton buttonUserAnswer3;
+    public javax.swing.JButton buttonUserAnswer4;
+    public javax.swing.JButton buttonUserAnswer5;
+    public javax.swing.JButton buttonUserAnswer6;
+    public javax.swing.JButton buttonUserAnswer7;
+    public javax.swing.JButton buttonUserAnswer8;
+    public javax.swing.JButton buttonUserAnswer9;
+    public javax.swing.JButton buttonValidateAnswer;
+    public javax.swing.JButton buttonValidateFinal;
+    public javax.swing.JComboBox<String> comboBoxQuestionType;
+    public javax.swing.JFrame jFrameUserAnswer;
+    public javax.swing.JLabel jLabelUsername;
+    public javax.swing.JPanel jPanel1;
+    public javax.swing.JPanel jPanelAnswersChoice;
+    public javax.swing.JPanel jPanelAnswersMulti;
+    public javax.swing.JPanel jPanelAnswersOpen;
+    public javax.swing.JPanel jPanelMain;
+    public javax.swing.JPanel jPanelOnAir;
+    public javax.swing.JPanel jPanelPopup1;
+    public javax.swing.JPanel jPanelQuestion;
+    public javax.swing.JPanel jPanelQuestionText;
+    public javax.swing.JPanel jPanelQuestionType;
+    public javax.swing.JPanel jPanelUserAnswer;
+    public javax.swing.JPanel jPanelUserList;
+    public javax.swing.JPanel jPanelUserQuestion;
+    public javax.swing.JPanel jPanelUsername;
+    public javax.swing.JPanel jPanelWaitAnswer;
+    public javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JScrollPane jScrollPane2;
+    public javax.swing.JScrollPane jScrollPane3;
+    public javax.swing.JScrollPane jScrollPane4;
+    public javax.swing.JScrollPane jScrollPane5;
+    public javax.swing.JScrollPane jScrollPane6;
+    public javax.swing.JTabbedPane jTabbedPane;
+    public javax.swing.JTextPane jTextPane2;
+    public javax.swing.JLabel labelCustomAnswer1;
+    public javax.swing.JLabel labelCustomAnswer2;
+    public javax.swing.JLabel labelCustomAnswer3;
+    public javax.swing.JLabel labelCustomAnswer4;
+    public javax.swing.JLabel labelCustomAnswer5;
+    public javax.swing.JLabel labelCustomAnswer6;
+    public javax.swing.JLabel labelCustomAnswer7;
+    public javax.swing.JLabel labelCustomAnswer8;
+    public javax.swing.JLabel labelOverviewAnswer1;
+    public javax.swing.JLabel labelOverviewAnswer2;
+    public javax.swing.JLabel labelOverviewAnswer3;
+    public javax.swing.JLabel labelOverviewAnswer4;
+    public javax.swing.JLabel labelOverviewAnswer5;
+    public javax.swing.JLabel labelOverviewAnswer6;
+    public javax.swing.JLabel labelOverviewAnswer7;
+    public javax.swing.JLabel labelOverviewAnswer8;
+    public javax.swing.JLabel labelPopup;
+    public javax.swing.JLabel labelUser1;
+    public javax.swing.JLabel labelUser10;
+    public javax.swing.JLabel labelUser11;
+    public javax.swing.JLabel labelUser12;
+    public javax.swing.JLabel labelUser2;
+    public javax.swing.JLabel labelUser3;
+    public javax.swing.JLabel labelUser4;
+    public javax.swing.JLabel labelUser5;
+    public javax.swing.JLabel labelUser6;
+    public javax.swing.JLabel labelUser7;
+    public javax.swing.JLabel labelUser8;
+    public javax.swing.JLabel labelUser9;
+    public javax.swing.JLabel labelUserAnswer1;
+    public javax.swing.JLabel labelUserAnswer2;
+    public javax.swing.JLabel labelUserAnswer3;
+    public javax.swing.JLabel labelUserAnswer4;
+    public javax.swing.JLabel labelUserAnswer5;
+    public javax.swing.JLabel labelUserAnswer6;
+    public javax.swing.JLabel labelUserAnswer7;
+    public javax.swing.JLabel labelUserAnswer8;
+    public javax.swing.JFrame popupAnswer;
+    public javax.swing.JProgressBar progressBarAns1;
+    public javax.swing.JProgressBar progressBarAns2;
+    public javax.swing.JProgressBar progressBarAns3;
+    public javax.swing.JProgressBar progressBarAns4;
+    public javax.swing.JProgressBar progressBarAns5;
+    public javax.swing.JProgressBar progressBarAns6;
+    public javax.swing.JProgressBar progressBarAns7;
+    public javax.swing.JProgressBar progressBarAns8;
+    public javax.swing.JTextArea textAreaPopup;
+    public javax.swing.JTextArea textAreaQuestionText;
+    public javax.swing.JTextPane textPaneQuestion;
+    public javax.swing.JTextPane textPaneQuestionUserAnswer;
+    public javax.swing.JTextPane textPaneQuickViewAnswers;
     // End of variables declaration//GEN-END:variables
 }
