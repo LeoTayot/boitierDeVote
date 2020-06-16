@@ -79,12 +79,12 @@ public class ClientStudentUI extends javax.swing.JFrame {
             }
         });
 
-        jPanelQuestion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Question en cours", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        jPanelQuestion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Current Question", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
 
         jTextPaneQuestion.setEditable(false);
         jTextPaneQuestion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jScrollPane1.setViewportView(jTextPaneQuestion);
-        jTextPaneQuestion.setText("Aucune question pour l'instant");
+        jTextPaneQuestion.setText("No question yet");
 
         jLabelTypeQuestion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelTypeQuestion.setText("TypeQuestion");
@@ -113,7 +113,7 @@ public class ClientStudentUI extends javax.swing.JFrame {
 
         jLabelTypeQuestion.setVisible(false);
 
-        jPanelUniqueAnswer.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Réponse", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        jPanelUniqueAnswer.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Answer", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
 
         answerButtonGroup.add(radioAnwser1);
         radioAnwser1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -196,7 +196,7 @@ public class ClientStudentUI extends javax.swing.JFrame {
                 .addContainerGap(8, Short.MAX_VALUE))
         );
 
-        jPanelMultipleAnswer.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Réponse", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        jPanelMultipleAnswer.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Answer", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
 
         checkBoxAnswer1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         checkBoxAnswer1.setText("Reponse 1");
@@ -300,7 +300,7 @@ public class ClientStudentUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanelOpenAnswer.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Réponse", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        jPanelOpenAnswer.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Answer", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
 
         textAreaOpenAnswer.setColumns(20);
         textAreaOpenAnswer.setRows(5);
@@ -324,7 +324,7 @@ public class ClientStudentUI extends javax.swing.JFrame {
         );
 
         buttonSendAnswer.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        buttonSendAnswer.setText("Envoyer la réponse");
+        buttonSendAnswer.setText("Send Answer");
         buttonSendAnswer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonSendAnswerActionPerformed(evt);
@@ -370,7 +370,7 @@ public class ClientStudentUI extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jPanelNotif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonSendAnswer)
+                        .addComponent(buttonSendAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)))
                 .addContainerGap())
         );
@@ -603,6 +603,6 @@ public class ClientStudentUI extends javax.swing.JFrame {
     public javax.swing.JRadioButton radioAnswer7;
     public javax.swing.JRadioButton radioAnswer8;
     public javax.swing.JRadioButton radioAnwser1;
-    private javax.swing.JTextArea textAreaOpenAnswer;
+    public javax.swing.JTextArea textAreaOpenAnswer;
     // End of variables declaration//GEN-END:variables
 }
