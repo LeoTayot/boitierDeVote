@@ -236,7 +236,6 @@ public class ClientTeacherUI extends javax.swing.JFrame {
         );
 
         jFrameUserAnswer.setTitle("User Answer");
-        jFrameUserAnswer.setPreferredSize(null);
         jFrameUserAnswer.setResizable(false);
         jFrameUserAnswer.setSize(new java.awt.Dimension(600, 480));
 
@@ -360,6 +359,7 @@ public class ClientTeacherUI extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Answer", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
 
+        jTextPane2.setEditable(false);
         jScrollPane5.setViewportView(jTextPane2);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
