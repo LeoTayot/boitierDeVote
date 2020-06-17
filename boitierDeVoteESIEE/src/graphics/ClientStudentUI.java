@@ -448,15 +448,13 @@ public class ClientStudentUI extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
 
     private void buttonSendAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSendAnswerActionPerformed
-        
-        sendAnswer();
-        
         jPanelOpenAnswer.setVisible(false);
         jPanelMultipleAnswer.setVisible(false);
         jPanelUniqueAnswer.setVisible(false);
         buttonSendAnswer.setVisible(false);
         jLabelTypeQuestion.setVisible(false);
-        jTextPaneQuestion.setText("Aucune question pour l'instant");
+        jTextPaneQuestion.setText("No question yet");
+        sendAnswer();
     }//GEN-LAST:event_buttonSendAnswerActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing

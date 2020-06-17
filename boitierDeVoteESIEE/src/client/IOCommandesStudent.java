@@ -65,6 +65,7 @@ public class IOCommandesStudent extends Thread {
 			
 			// Set VALUE IN GUI
 			addNewQuestion(message);
+			System.out.println("Question size :"+questions.size());
 			if(questions.size() > 1) {
 				sendNotification();
 				// update nb question en attente 
@@ -118,8 +119,8 @@ public class IOCommandesStudent extends Thread {
 	
 	public void sendNotification() {
 		System.out.println("NEW QUESTION AVAILABLE");
-                this.studentUI.labelNotif.setText("New question available !");
-                this.studentUI.labelNotif.setBackground(new Color(51,204,255));
+        this.studentUI.labelNotif.setText("New question available !");
+        this.studentUI.labelNotif.setBackground(new Color(51,204,255));
 	}
 	
 	public void addNewQuestion(String message) {
@@ -137,7 +138,7 @@ public class IOCommandesStudent extends Thread {
 	}
 	
 	public void setCurrentQuestion() {
-                System.out.println("Je rentre dans setCurrentQuestion");
+        System.out.println("Je rentre dans setCurrentQuestion");
 		JSONObject jsonObject = (JSONObject) questions.get(0);
 		currentQuestion = (String) jsonObject.get("questionId");
 		System.out.println("Current question asked : " + currentQuestion);
@@ -149,13 +150,15 @@ public class IOCommandesStudent extends Thread {
 	}
 	
 	public void refreshUI() {
-                System.out.println("je rentre dans refreshUI");
+        System.out.println("je rentre dans refreshUI");
 		this.studentUI.jTextPaneQuestion.setText(currentLabel);
-                this.studentUI.jLabelTypeQuestion.setVisible(true);
-                this.studentUI.buttonSendAnswer.setVisible(true);
-                this.studentUI.labelNotif.setText("");
-                this.studentUI.labelNotif.setBackground(new Color(240,240,240));
-                this.studentUI.textAreaOpenAnswer.setText("");
+        this.studentUI.jLabelTypeQuestion.setVisible(true);
+        this.studentUI.buttonSendAnswer.setVisible(true);
+        this.studentUI.labelNotif.setText("");
+        this.studentUI.labelNotif.setBackground(new Color(240,240,240));
+        this.studentUI.textAreaOpenAnswer.setText("");
+        
+        System.out.println(currentLabel + " - " + currentQuestionType);
 		
 		switch(currentQuestionType) {
 			case "MULTIPLE" :
@@ -228,12 +231,12 @@ public class IOCommandesStudent extends Thread {
 				
 				break;
 			case "OPEN" :
+				clearAvailableAnswerInGui();
 				this.studentUI.jLabelTypeQuestion.setText("Open question");
 				this.studentUI.typeQuestion(currentQuestionType);
 				break;
 		}
-		
-		this.studentUI.repaint();
+		//this.studentUI.repaint();
 	}
 	
 	public void clearAvailableAnswerInGui() {
