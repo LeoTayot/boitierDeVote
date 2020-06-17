@@ -29,7 +29,7 @@ public class IOCommandesTeacher extends Thread {
 		while(!Thread.interrupted()) {
 			// TODO : Lire uniquement Teacher
 			message = this.lireReseau();
-			ecrireEcran(message);
+			// ecrireEcran(message);
 		}
 	}
 

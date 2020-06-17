@@ -429,40 +429,40 @@ public class ClientStudentUI extends javax.swing.JFrame {
     			break;
     		case "MULTIPLE" :
     			if(checkBoxAnswer1.isSelected())
-    				answerArray.add("1");
+    				answerArray.add("0");
     			if(checkBoxAnswer2.isSelected())
-    				answerArray.add("2");
+    				answerArray.add("1");
     			if(checkBoxAnswer3.isSelected())
-    				answerArray.add("3");
+    				answerArray.add("2");
     			if(checkBoxAnswer4.isSelected())
-    				answerArray.add("4");
+    				answerArray.add("3");
     			if(checkBoxAnswer5.isSelected())
-    				answerArray.add("5");
+    				answerArray.add("4");
     			if(checkBoxAnswer6.isSelected())
-    				answerArray.add("6");
+    				answerArray.add("5");
     			if(checkBoxAnswer7.isSelected())
-    				answerArray.add("7");
+    				answerArray.add("6");
     			if(checkBoxAnswer8.isSelected())
-    				answerArray.add("8");
+    				answerArray.add("7");
     			answer = answerArray.toString();
     			break;
     		case "UNIQUE" :
     			if(radioAnwser1.isSelected())
-        			answer = "1";
+        			answer = "0";
     			if(radioAnswer2.isSelected())
-        			answer = "2";
+        			answer = "1";
     			if(radioAnswer3.isSelected())
-        			answer = "3";
+        			answer = "2";
     			if(radioAnswer4.isSelected())
-        			answer = "4";
+        			answer = "3";
     			if(radioAnswer5.isSelected())
-        			answer = "5";
+        			answer = "4";
     			if(radioAnswer6.isSelected())
-        			answer = "6";
+        			answer = "5";
     			if(radioAnswer7.isSelected())
-        			answer = "7";
+        			answer = "6";
     			if(radioAnswer8.isSelected())
-        			answer = "8";
+        			answer = "7";
     			break;
     	}
     	student.sendAnswer(answer);

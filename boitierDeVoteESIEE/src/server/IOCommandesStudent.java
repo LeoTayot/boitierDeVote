@@ -137,6 +137,9 @@ public class IOCommandesStudent extends Thread {
 			}
 			
 			for(Object user : PrincipaleServeur.users) {
+				if(((JSONObject) user).get("role").equals("INFOS")) {
+					continue;
+				}
 				Socket currentId = (Socket) ((JSONObject) user).get("socketId");
 				if(currentId.equals(maChaussette)) {
 					// set Answer
