@@ -391,56 +391,56 @@ public class AnswerData extends Thread {
 			case 8 :
 				this.teacherUI.labelOverviewAnswer8.setText((String) currentAnswers.get(7));
 				this.teacherUI.labelOverviewAnswer8.setVisible(true);
-				this.teacherUI.progressBarAns8.setString(Integer.toString(stats[7])+" réponse(s)");
+				this.teacherUI.progressBarAns8.setString(Integer.toString(stats[7])+" answer(s)");
 				this.teacherUI.progressBarAns8.setStringPainted(true);
 				this.teacherUI.progressBarAns8.setValue(Math.round(percents[7]));
 				this.teacherUI.progressBarAns8.setVisible(true);
 			case 7 :
 				this.teacherUI.labelOverviewAnswer7.setText((String) currentAnswers.get(6));
 				this.teacherUI.labelOverviewAnswer7.setVisible(true);
-				this.teacherUI.progressBarAns7.setString(Integer.toString(stats[6])+" réponse(s)");
+				this.teacherUI.progressBarAns7.setString(Integer.toString(stats[6])+" answer(s)");
 				this.teacherUI.progressBarAns7.setStringPainted(true);
 				this.teacherUI.progressBarAns7.setValue(Math.round(percents[6]));
 				this.teacherUI.progressBarAns7.setVisible(true);
 			case 6 :
 				this.teacherUI.labelOverviewAnswer6.setText((String) currentAnswers.get(5));
 				this.teacherUI.labelOverviewAnswer6.setVisible(true);
-				this.teacherUI.progressBarAns6.setString(Integer.toString(stats[5])+" réponse(s)");
+				this.teacherUI.progressBarAns6.setString(Integer.toString(stats[5])+" answer(s)");
 				this.teacherUI.progressBarAns6.setStringPainted(true);
 				this.teacherUI.progressBarAns6.setValue(Math.round(percents[5]));
 				this.teacherUI.progressBarAns6.setVisible(true);
 			case 5 :
 				this.teacherUI.labelOverviewAnswer5.setText((String) currentAnswers.get(4));
 				this.teacherUI.labelOverviewAnswer5.setVisible(true);
-				this.teacherUI.progressBarAns5.setString(Integer.toString(stats[4])+" réponse(s)");
+				this.teacherUI.progressBarAns5.setString(Integer.toString(stats[4])+" answer(s)");
 				this.teacherUI.progressBarAns5.setStringPainted(true);
 				this.teacherUI.progressBarAns5.setValue(Math.round(percents[4]));
 				this.teacherUI.progressBarAns5.setVisible(true);
 			case 4 :
 				this.teacherUI.labelOverviewAnswer4.setText((String) currentAnswers.get(3));
 				this.teacherUI.labelOverviewAnswer4.setVisible(true);
-				this.teacherUI.progressBarAns4.setString(Integer.toString(stats[3])+" réponse(s)");
+				this.teacherUI.progressBarAns4.setString(Integer.toString(stats[3])+" answer(s)");
 				this.teacherUI.progressBarAns4.setStringPainted(true);
 				this.teacherUI.progressBarAns4.setValue(Math.round(percents[3]));
 				this.teacherUI.progressBarAns4.setVisible(true);
 			case 3 :
 				this.teacherUI.labelOverviewAnswer3.setText((String) currentAnswers.get(2));
 				this.teacherUI.labelOverviewAnswer3.setVisible(true);
-				this.teacherUI.progressBarAns3.setString(Integer.toString(stats[2])+" réponse(s)");
+				this.teacherUI.progressBarAns3.setString(Integer.toString(stats[2])+" answer(s)");
 				this.teacherUI.progressBarAns3.setStringPainted(true);
 				this.teacherUI.progressBarAns3.setValue(Math.round(percents[2]));
 				this.teacherUI.progressBarAns3.setVisible(true);
 			case 2 :
 				this.teacherUI.labelOverviewAnswer2.setText((String) currentAnswers.get(1));
 				this.teacherUI.labelOverviewAnswer2.setVisible(true);
-				this.teacherUI.progressBarAns2.setString(Integer.toString(stats[1])+" réponse(s)");
+				this.teacherUI.progressBarAns2.setString(Integer.toString(stats[1])+" answer(s)");
 				this.teacherUI.progressBarAns2.setStringPainted(true);
 				this.teacherUI.progressBarAns2.setValue(Math.round(percents[1]));
 				this.teacherUI.progressBarAns2.setVisible(true);
 			case 1 :
 				this.teacherUI.labelOverviewAnswer1.setText((String) currentAnswers.get(0));
 				this.teacherUI.labelOverviewAnswer1.setVisible(true);
-				this.teacherUI.progressBarAns1.setString(Integer.toString(stats[0])+" réponse(s)");
+				this.teacherUI.progressBarAns1.setString(Integer.toString(stats[0])+" answer(s)");
 				this.teacherUI.progressBarAns1.setStringPainted(true);
 				this.teacherUI.progressBarAns1.setValue(Math.round(percents[0]));
 				this.teacherUI.progressBarAns1.setVisible(true);
