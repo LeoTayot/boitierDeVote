@@ -12,12 +12,13 @@ import org.json.simple.parser.JSONParser;
 
 public class PrincipaleServeur {
 	public static int port = 4502;
-	public static int maxUsers = 4;
+	public static int maxUsers = 50;
 
 	public static Thread[] mesThreads = new Thread[maxUsers];
 	public static Socket[] lesChaussettes = new Socket[maxUsers];
 	public static Map<Socket, String> userList = new HashMap<>();
 	public static JSONArray users = new JSONArray();
+	public static JSONObject infos = new JSONObject();
 
 	public static int checkPlaceLibre(int max, Thread[] tabThreads) {
 		for (int i = 0; i < max - 1; i++) {
@@ -32,11 +33,15 @@ public class PrincipaleServeur {
 
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
-
+		infos.put("role", "INFOS");
+		infos.put("lastQuestion", null);
+		
 		try {
 			ServerSocket socketServeur = new ServerSocket(port);
 			System.out.println("Lancement du serveur");
-
+			IOAnswerData IOas = new IOAnswerData();
+			IOas.start();
+			
 			while (true) {
 				Socket socketClient = socketServeur.accept();
 				int available = checkPlaceLibre(maxUsers, mesThreads);

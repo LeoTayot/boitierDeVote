@@ -8,7 +8,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class Questionnaire {
-	private String questionId;
 	private String questionType;
     private String teacher;
     private String label;
@@ -18,14 +17,12 @@ public class Questionnaire {
     // private boolean showCorrection;
 
 	public Questionnaire() {
-		questionId = UUID.randomUUID().toString();
 		questionType = null;
 	    teacher = null;
 	    label = null;
 	}
 	
 	public Questionnaire(String teacherName) {
-		questionId = UUID.randomUUID().toString();
 		teacher = teacherName;
 		questionType = null;
 	    label = null;
@@ -62,7 +59,7 @@ public class Questionnaire {
 	public Object getQuestions() {
 		// get Questionnaire
 		JSONObject question = new JSONObject();
-		question.put("questionId", this.questionId);
+		question.put("questionId", UUID.randomUUID().toString());
 		question.put("questionType", this.questionType);
 		question.put("teacher", this.teacher);
 		question.put("label", this.label);

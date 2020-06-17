@@ -63,7 +63,7 @@ public class IOCommandesStudent extends Thread {
 				continue;
 			}
 			
-			// Set VALUE IN GUI		
+			// Set VALUE IN GUI
 			addNewQuestion(message);
 			if(questions.size() > 1) {
 				sendNotification();
@@ -294,20 +294,7 @@ public class IOCommandesStudent extends Thread {
 		formatedAnswer.put("questionId", this.currentQuestion);
 		formatedAnswer.put("questionType", this.currentQuestionType);
 		formatedAnswer.put("studentName", this.username);
-		
-		switch(currentQuestionType) {
-			case "OPEN" :
-				formatedAnswer.put("answer", answer);
-				break;
-			case "UNIQUE" :
-				// Formater result into string
-				formatedAnswer.put("answer", answer);
-				break;
-			case "MULTIPLE" :
-				// Formater result into string
-				formatedAnswer.put("answer", answer);
-				break;
-		}
+		formatedAnswer.put("answer", answer);
 		
 		System.out.println(formatedAnswer.toJSONString());
 		this.ecrireReseau(formatedAnswer.toJSONString());
