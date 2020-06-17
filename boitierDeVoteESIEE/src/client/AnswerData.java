@@ -386,7 +386,27 @@ public class AnswerData extends Thread {
 		}
 	}
 	
+	private void resetProgressBars() {
+		teacherUI.progressBarAns1.setVisible(false);
+		teacherUI.progressBarAns2.setVisible(false);
+		teacherUI.progressBarAns3.setVisible(false);
+		teacherUI.progressBarAns4.setVisible(false);
+		teacherUI.progressBarAns5.setVisible(false);
+		teacherUI.progressBarAns6.setVisible(false);
+		teacherUI.progressBarAns7.setVisible(false);
+		teacherUI.progressBarAns8.setVisible(false);
+		teacherUI.labelOverviewAnswer1.setVisible(false);
+		teacherUI.labelOverviewAnswer2.setVisible(false);
+		teacherUI.labelOverviewAnswer3.setVisible(false);
+		teacherUI.labelOverviewAnswer4.setVisible(false);
+		teacherUI.labelOverviewAnswer5.setVisible(false);
+		teacherUI.labelOverviewAnswer6.setVisible(false);
+		teacherUI.labelOverviewAnswer7.setVisible(false);
+		teacherUI.labelOverviewAnswer8.setVisible(false);
+	}
+	
 	private void setProgressBars(int[] stats, float[] percents) {
+		resetProgressBars();
 		switch(currentAnswers.size()) {
 			case 8 :
 				this.teacherUI.labelOverviewAnswer8.setText((String) currentAnswers.get(7));
