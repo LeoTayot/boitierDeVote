@@ -151,7 +151,7 @@ public class AnswerData extends Thread {
 		this.teacherUI.buttonUserAnswer6.setVisible(false);
 		this.teacherUI.buttonUserAnswer5.setVisible(false);
 		this.teacherUI.buttonUserAnswer4.setVisible(false);
-		this.teacherUI. buttonUserAnswer3.setVisible(false);
+		this.teacherUI.buttonUserAnswer3.setVisible(false);
 		this.teacherUI.buttonUserAnswer2.setVisible(false);
 		this.teacherUI.buttonUserAnswer1.setVisible(false);
 	}

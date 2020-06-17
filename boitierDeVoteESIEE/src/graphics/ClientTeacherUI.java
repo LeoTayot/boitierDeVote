@@ -239,7 +239,7 @@ public class ClientTeacherUI extends javax.swing.JFrame {
 
         jFrameUserAnswer.setPreferredSize(new java.awt.Dimension(600, 480));
         jFrameUserAnswer.setTitle("User Answer");
-        jFrameUserAnswer.setResizable(false);
+        jFrameUserAnswer.setResizable(true);
 
         jPanelUsername.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "User", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         jPanelUsername.setToolTipText("");
@@ -1430,8 +1430,15 @@ public class ClientTeacherUI extends javax.swing.JFrame {
         textAreaQuestionText.setText("");
     }//GEN-LAST:event_buttonNewQuestionActionPerformed
 
-	private void setUserSpecificAnswer() {
-		JSONObject student = (JSONObject) this.answerData.students.get(0);
+	private void setUserSpecificAnswer(int studentNumber) {
+		JSONObject student = null;
+		student = (JSONObject) this.answerData.students.get(studentNumber);
+		
+		if(student == null) {
+			System.out.println("Invalid student");
+			return;
+		}
+		
 		String currentQuestionType = (String) this.answerData.currentQuestionType;
 		textPaneQuestionUserAnswer.setText(this.answerData.currentQuestionLabel);
 		
@@ -1444,6 +1451,7 @@ public class ClientTeacherUI extends javax.swing.JFrame {
 				break;
 			case "UNIQUE" :
 				jPanelUserAnswer.setVisible(true);
+				System.out.println("student : "+student.toJSONString());
 				labelUserAnswer1.setText((String) this.answerData.currentAnswers.get(Integer.parseInt((String) student.get("answer"))));
 				labelUserAnswer1.setVisible(true);
 				break;
@@ -1510,8 +1518,8 @@ public class ClientTeacherUI extends javax.swing.JFrame {
 	
     private void buttonUserAnswer12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUserAnswer1ActionPerformed
     	
-        jLabelUsername.setText(labelUser1.getText());
-        setUserSpecificAnswer();
+        jLabelUsername.setText(labelUser12.getText());
+        setUserSpecificAnswer(11);
         
         jFrameUserAnswer.setLocation(600,300);
         jFrameUserAnswer.setVisible(true);
@@ -1522,7 +1530,7 @@ public class ClientTeacherUI extends javax.swing.JFrame {
 
         textPaneQuestionUserAnswer.setText(textPaneQuestion.getText());
         jLabelUsername.setText(labelUser11.getText());
-        setUserSpecificAnswer();
+        setUserSpecificAnswer(10);
 
         jFrameUserAnswer.setLocation(600,300);
         jFrameUserAnswer.setVisible(true);
@@ -1533,7 +1541,7 @@ public class ClientTeacherUI extends javax.swing.JFrame {
 
         textPaneQuestionUserAnswer.setText(textPaneQuestion.getText());
         jLabelUsername.setText(labelUser10.getText());
-        setUserSpecificAnswer();
+        setUserSpecificAnswer(9);
 
         jFrameUserAnswer.setLocation(600,300);
         jFrameUserAnswer.setVisible(true);
@@ -1544,7 +1552,7 @@ public class ClientTeacherUI extends javax.swing.JFrame {
 
         textPaneQuestionUserAnswer.setText(textPaneQuestion.getText());
         jLabelUsername.setText(labelUser9.getText());
-        setUserSpecificAnswer();
+        setUserSpecificAnswer(8);
 
         jFrameUserAnswer.setLocation(600,300);
         jFrameUserAnswer.setVisible(true);
@@ -1555,7 +1563,7 @@ public class ClientTeacherUI extends javax.swing.JFrame {
 
         textPaneQuestionUserAnswer.setText(textPaneQuestion.getText());
         jLabelUsername.setText(labelUser8.getText());
-        setUserSpecificAnswer();
+        setUserSpecificAnswer(7);
 
         jFrameUserAnswer.setLocation(600,300);
         jFrameUserAnswer.setVisible(true);
@@ -1566,7 +1574,7 @@ public class ClientTeacherUI extends javax.swing.JFrame {
 
         textPaneQuestionUserAnswer.setText(textPaneQuestion.getText());
         jLabelUsername.setText(labelUser7.getText());
-        setUserSpecificAnswer();
+        setUserSpecificAnswer(6);
 
         jFrameUserAnswer.setLocation(600,300);
         jFrameUserAnswer.setVisible(true);
@@ -1577,7 +1585,7 @@ public class ClientTeacherUI extends javax.swing.JFrame {
 
         textPaneQuestionUserAnswer.setText(textPaneQuestion.getText());
         jLabelUsername.setText(labelUser6.getText());
-        setUserSpecificAnswer();
+        setUserSpecificAnswer(5);
 
         jFrameUserAnswer.setLocation(600,300);
         jFrameUserAnswer.setVisible(true);
@@ -1588,7 +1596,7 @@ public class ClientTeacherUI extends javax.swing.JFrame {
 
         textPaneQuestionUserAnswer.setText(textPaneQuestion.getText());
         jLabelUsername.setText(labelUser5.getText());
-        setUserSpecificAnswer();
+        setUserSpecificAnswer(4);
 
         jFrameUserAnswer.setLocation(600,300);
         jFrameUserAnswer.setVisible(true);
@@ -1599,7 +1607,7 @@ public class ClientTeacherUI extends javax.swing.JFrame {
 
         textPaneQuestionUserAnswer.setText(textPaneQuestion.getText());
         jLabelUsername.setText(labelUser4.getText());
-        setUserSpecificAnswer();
+        setUserSpecificAnswer(3);
 
         jFrameUserAnswer.setLocation(600,300);
         jFrameUserAnswer.setVisible(true);
@@ -1610,7 +1618,7 @@ public class ClientTeacherUI extends javax.swing.JFrame {
 
         textPaneQuestionUserAnswer.setText(textPaneQuestion.getText());
         jLabelUsername.setText(labelUser3.getText());
-        setUserSpecificAnswer();
+        setUserSpecificAnswer(2);
 
         jFrameUserAnswer.setLocation(600,300);
         jFrameUserAnswer.setVisible(true);
@@ -1621,7 +1629,7 @@ public class ClientTeacherUI extends javax.swing.JFrame {
 
         textPaneQuestionUserAnswer.setText(textPaneQuestion.getText());
         jLabelUsername.setText(labelUser2.getText());
-        setUserSpecificAnswer();
+        setUserSpecificAnswer(1);
 
         jFrameUserAnswer.setLocation(600,300);
         jFrameUserAnswer.setVisible(true);
@@ -1632,7 +1640,7 @@ public class ClientTeacherUI extends javax.swing.JFrame {
 
         textPaneQuestionUserAnswer.setText(textPaneQuestion.getText());
         jLabelUsername.setText(labelUser1.getText());
-        setUserSpecificAnswer();
+        setUserSpecificAnswer(0);
 
         jFrameUserAnswer.setLocation(600,300);
         jFrameUserAnswer.setVisible(true);
@@ -1766,6 +1774,7 @@ public class ClientTeacherUI extends javax.swing.JFrame {
     public javax.swing.JLabel labelUserAnswer6;
     public javax.swing.JLabel labelUserAnswer7;
     public javax.swing.JLabel labelUserAnswer8;
+    public javax.swing.JLabel labelBricolage;
     public javax.swing.JFrame popupAnswer;
     public javax.swing.JProgressBar progressBarAns1;
     public javax.swing.JProgressBar progressBarAns2;
