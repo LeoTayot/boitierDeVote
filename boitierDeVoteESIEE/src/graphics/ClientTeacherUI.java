@@ -1771,7 +1771,6 @@ public class ClientTeacherUI extends javax.swing.JFrame {
     public javax.swing.JLabel labelUserAnswer6;
     public javax.swing.JLabel labelUserAnswer7;
     public javax.swing.JLabel labelUserAnswer8;
-    public javax.swing.JLabel labelBricolage;
     public javax.swing.JFrame popupAnswer;
     public javax.swing.JProgressBar progressBarAns1;
     public javax.swing.JProgressBar progressBarAns2;
