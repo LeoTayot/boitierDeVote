@@ -77,7 +77,6 @@ public class ClientTeacherUI extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTextPane2 = new javax.swing.JTextPane();
-        jTextPane2.setEditable(false);
         buttonOKUserAnswer = new javax.swing.JButton();
         jTabbedPane = new javax.swing.JTabbedPane();
         jPanelMain = new javax.swing.JPanel();
@@ -157,7 +156,6 @@ public class ClientTeacherUI extends javax.swing.JFrame {
         jPanelAnswersOpen = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         textPaneQuickViewAnswers = new javax.swing.JTextPane();
-        textPaneQuickViewAnswers.setEditable(false);
 
         popupAnswer.setTitle("Add an answer");
         popupAnswer.setResizable(false);
@@ -237,8 +235,8 @@ public class ClientTeacherUI extends javax.swing.JFrame {
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        jFrameUserAnswer.setPreferredSize(new java.awt.Dimension(600, 480));
         jFrameUserAnswer.setTitle("User Answer");
+        jFrameUserAnswer.setPreferredSize(new java.awt.Dimension(600, 480));
         jFrameUserAnswer.setResizable(true);
 
         jPanelUsername.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "User", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
@@ -425,7 +423,6 @@ public class ClientTeacherUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Client Teacher");
         setLocation(new java.awt.Point(300, 50));
-        setPreferredSize(new java.awt.Dimension(1000, 653));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -1159,9 +1156,8 @@ public class ClientTeacherUI extends javax.swing.JFrame {
                     .addGroup(jPanelWaitAnswerLayout.createSequentialGroup()
                         .addComponent(jPanelUserList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(buttonNewQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonNewQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanelOnAir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59))
         );
@@ -1195,7 +1191,7 @@ public class ClientTeacherUI extends javax.swing.JFrame {
 
         String index = (String)comboBoxQuestionType.getSelectedItem();
         System.out.println(comboBoxQuestionType.getSelectedItem());
-        if (index.equals("<Choisir>") || index.equals("Ouverte")){
+        if (index.equals("<Choose>") || index.equals("Open")){
             buttonAddAnswer.setVisible(false);
 
             labelCustomAnswer1.setVisible(false);
@@ -1516,7 +1512,7 @@ public class ClientTeacherUI extends javax.swing.JFrame {
 		}
 	}
 	
-    private void buttonUserAnswer12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUserAnswer1ActionPerformed
+    private void buttonUserAnswer12ActionPerformed(java.awt.event.ActionEvent evt) {                                                  
     	
         jLabelUsername.setText(labelUser12.getText());
         setUserSpecificAnswer(11);
@@ -1524,7 +1520,7 @@ public class ClientTeacherUI extends javax.swing.JFrame {
         jFrameUserAnswer.setLocation(600,300);
         jFrameUserAnswer.setVisible(true);
         
-    }//GEN-LAST:event_buttonUserAnswer12ActionPerformed
+    }                                                  
 
     private void buttonUserAnswer11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUserAnswer11ActionPerformed
 
@@ -1685,18 +1681,18 @@ public class ClientTeacherUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton buttonAddAnswer;
-    public javax.swing.JButton buttonCancelAnswer;
-    public javax.swing.JButton buttonDeleteAnswer1;
-    public javax.swing.JButton buttonDeleteAnswer2;
-    public javax.swing.JButton buttonDeleteAnswer3;
-    public javax.swing.JButton buttonDeleteAnswer4;
-    public javax.swing.JButton buttonDeleteAnswer5;
-    public javax.swing.JButton buttonDeleteAnswer6;
-    public javax.swing.JButton buttonDeleteAnswer7;
-    public javax.swing.JButton buttonDeleteAnswer8;
-    public javax.swing.JButton buttonNewQuestion;
-    public javax.swing.JButton buttonOKUserAnswer;
+    private javax.swing.JButton buttonAddAnswer;
+    private javax.swing.JButton buttonCancelAnswer;
+    private javax.swing.JButton buttonDeleteAnswer1;
+    private javax.swing.JButton buttonDeleteAnswer2;
+    private javax.swing.JButton buttonDeleteAnswer3;
+    private javax.swing.JButton buttonDeleteAnswer4;
+    private javax.swing.JButton buttonDeleteAnswer5;
+    private javax.swing.JButton buttonDeleteAnswer6;
+    private javax.swing.JButton buttonDeleteAnswer7;
+    private javax.swing.JButton buttonDeleteAnswer8;
+    private javax.swing.JButton buttonNewQuestion;
+    private javax.swing.JButton buttonOKUserAnswer;
     public javax.swing.JButton buttonUserAnswer1;
     public javax.swing.JButton buttonUserAnswer10;
     public javax.swing.JButton buttonUserAnswer11;
@@ -1709,42 +1705,43 @@ public class ClientTeacherUI extends javax.swing.JFrame {
     public javax.swing.JButton buttonUserAnswer7;
     public javax.swing.JButton buttonUserAnswer8;
     public javax.swing.JButton buttonUserAnswer9;
-    public javax.swing.JButton buttonValidateAnswer;
-    public javax.swing.JButton buttonValidateFinal;
-    public javax.swing.JComboBox<String> comboBoxQuestionType;
+    private javax.swing.JButton buttonValidateAnswer;
+    private javax.swing.JButton buttonValidateFinal;
+    private javax.swing.JComboBox<String> comboBoxQuestionType;
     public javax.swing.JFrame jFrameUserAnswer;
-    public javax.swing.JLabel jLabelUsername;
-    public javax.swing.JPanel jPanel1;
-    public javax.swing.JPanel jPanelAnswersChoice;
+    private javax.swing.JLabel jLabelUsername;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanelAnswersChoice;
     public javax.swing.JPanel jPanelAnswersMulti;
     public javax.swing.JPanel jPanelAnswersOpen;
-    public javax.swing.JPanel jPanelMain;
-    public javax.swing.JPanel jPanelOnAir;
-    public javax.swing.JPanel jPanelPopup1;
-    public javax.swing.JPanel jPanelQuestion;
-    public javax.swing.JPanel jPanelQuestionText;
-    public javax.swing.JPanel jPanelQuestionType;
-    public javax.swing.JPanel jPanelUserAnswer;
-    public javax.swing.JPanel jPanelUserList;
-    public javax.swing.JPanel jPanelUserQuestion;
-    public javax.swing.JPanel jPanelUsername;
-    public javax.swing.JPanel jPanelWaitAnswer;
-    public javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JScrollPane jScrollPane2;
-    public javax.swing.JScrollPane jScrollPane3;
-    public javax.swing.JScrollPane jScrollPane4;
-    public javax.swing.JScrollPane jScrollPane5;
-    public javax.swing.JScrollPane jScrollPane6;
-    public javax.swing.JTabbedPane jTabbedPane;
-    public javax.swing.JTextPane jTextPane2;
-    public javax.swing.JLabel labelCustomAnswer1;
-    public javax.swing.JLabel labelCustomAnswer2;
-    public javax.swing.JLabel labelCustomAnswer3;
-    public javax.swing.JLabel labelCustomAnswer4;
-    public javax.swing.JLabel labelCustomAnswer5;
-    public javax.swing.JLabel labelCustomAnswer6;
-    public javax.swing.JLabel labelCustomAnswer7;
-    public javax.swing.JLabel labelCustomAnswer8;
+    private javax.swing.JPanel jPanelMain;
+    private javax.swing.JPanel jPanelOnAir;
+    private javax.swing.JPanel jPanelPopup1;
+    private javax.swing.JPanel jPanelQuestion;
+    private javax.swing.JPanel jPanelQuestionText;
+    private javax.swing.JPanel jPanelQuestionType;
+    private javax.swing.JPanel jPanelUserAnswer;
+    private javax.swing.JPanel jPanelUserList;
+    private javax.swing.JPanel jPanelUserQuestion;
+    private javax.swing.JPanel jPanelUsername;
+    private javax.swing.JPanel jPanelWaitAnswer;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JTabbedPane jTabbedPane;
+    private javax.swing.JTextPane jTextPane2;
+    private javax.swing.JLabel labelBricolage;
+    private javax.swing.JLabel labelCustomAnswer1;
+    private javax.swing.JLabel labelCustomAnswer2;
+    private javax.swing.JLabel labelCustomAnswer3;
+    private javax.swing.JLabel labelCustomAnswer4;
+    private javax.swing.JLabel labelCustomAnswer5;
+    private javax.swing.JLabel labelCustomAnswer6;
+    private javax.swing.JLabel labelCustomAnswer7;
+    private javax.swing.JLabel labelCustomAnswer8;
     public javax.swing.JLabel labelOverviewAnswer1;
     public javax.swing.JLabel labelOverviewAnswer2;
     public javax.swing.JLabel labelOverviewAnswer3;
@@ -1753,7 +1750,7 @@ public class ClientTeacherUI extends javax.swing.JFrame {
     public javax.swing.JLabel labelOverviewAnswer6;
     public javax.swing.JLabel labelOverviewAnswer7;
     public javax.swing.JLabel labelOverviewAnswer8;
-    public javax.swing.JLabel labelPopup;
+    private javax.swing.JLabel labelPopup;
     public javax.swing.JLabel labelUser1;
     public javax.swing.JLabel labelUser10;
     public javax.swing.JLabel labelUser11;
@@ -1784,10 +1781,10 @@ public class ClientTeacherUI extends javax.swing.JFrame {
     public javax.swing.JProgressBar progressBarAns6;
     public javax.swing.JProgressBar progressBarAns7;
     public javax.swing.JProgressBar progressBarAns8;
-    public javax.swing.JTextArea textAreaPopup;
-    public javax.swing.JTextArea textAreaQuestionText;
+    private javax.swing.JTextArea textAreaPopup;
+    private javax.swing.JTextArea textAreaQuestionText;
     public javax.swing.JTextPane textPaneQuestion;
-    public javax.swing.JTextPane textPaneQuestionUserAnswer;
+    private javax.swing.JTextPane textPaneQuestionUserAnswer;
     public javax.swing.JTextPane textPaneQuickViewAnswers;
     // End of variables declaration//GEN-END:variables
 }
