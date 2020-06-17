@@ -69,7 +69,8 @@ public class boitierDeVoteUI extends JFrame {
             }
         });
 
-        buttonQuit.setText("Quitter");
+        buttonQuit.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        buttonQuit.setText("Quit");
         buttonQuit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonQuitActionPerformed(evt);
@@ -129,9 +130,9 @@ public class boitierDeVoteUI extends JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(studentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(teacherButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addComponent(buttonQuit)
-                .addGap(24, 24, 24))
+                .addGap(33, 33, 33))
         );
 
         pack();

@@ -14,6 +14,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import graphics.ClientStudentUI;
+import java.awt.Color;
+import static java.awt.Color.*;
 
 public class IOCommandesStudent extends Thread {
 	private String username;
@@ -116,6 +118,8 @@ public class IOCommandesStudent extends Thread {
 	
 	public void sendNotification() {
 		System.out.println("NEW QUESTION AVAILABLE");
+                this.studentUI.labelNotif.setText("New question available !");
+                this.studentUI.labelNotif.setBackground(new Color(51,204,255));
 	}
 	
 	public void addNewQuestion(String message) {
@@ -133,6 +137,7 @@ public class IOCommandesStudent extends Thread {
 	}
 	
 	public void setCurrentQuestion() {
+                System.out.println("Je rentre dans setCurrentQuestion");
 		JSONObject jsonObject = (JSONObject) questions.get(0);
 		currentQuestion = (String) jsonObject.get("questionId");
 		System.out.println("Current question asked : " + currentQuestion);
@@ -144,13 +149,20 @@ public class IOCommandesStudent extends Thread {
 	}
 	
 	public void refreshUI() {
+                System.out.println("je rentre dans refreshUI");
 		this.studentUI.jTextPaneQuestion.setText(currentLabel);
+                this.studentUI.jLabelTypeQuestion.setVisible(true);
+                this.studentUI.buttonSendAnswer.setVisible(true);
+                this.studentUI.labelNotif.setText("");
+                this.studentUI.labelNotif.setBackground(new Color(240,240,240));
+                this.studentUI.textAreaOpenAnswer.setText("");
 		
 		switch(currentQuestionType) {
 			case "MULTIPLE" :
 				clearAvailableAnswerInGui();
 				this.studentUI.jLabelTypeQuestion.setText("Plusieurs reponses sont possibles");
 				this.studentUI.typeQuestion(currentQuestionType);
+                                
 				
 				switch(this.possibleAnswer.size()) {
 					case 8 :
@@ -183,7 +195,7 @@ public class IOCommandesStudent extends Thread {
 				break;
 			case "UNIQUE" :
 				clearAvailableAnswerInGui();
-				this.studentUI.jLabelTypeQuestion.setText("Une seule reponse est admise");
+				this.studentUI.jLabelTypeQuestion.setText("Only one answer is possible");
 				this.studentUI.typeQuestion(currentQuestionType);
 				
 				switch(this.possibleAnswer.size()) {
@@ -216,7 +228,7 @@ public class IOCommandesStudent extends Thread {
 				
 				break;
 			case "OPEN" :
-				this.studentUI.jLabelTypeQuestion.setText("Question ouverte");
+				this.studentUI.jLabelTypeQuestion.setText("Open question");
 				this.studentUI.typeQuestion(currentQuestionType);
 				break;
 		}
